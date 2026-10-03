@@ -1,0 +1,176 @@
+{
+  "previousEdition": [
+    {
+      "id": "highlight-1",
+      "title": "Ideas Were Pitched",
+      "subtitle": "High-stakes founder presentations to seasoned industry judges and ecosystem leaders.",
+      "icon": "Mic",
+      "gradient": "from-brand-blue to-brand-purple",
+      "bgImage": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "highlight-2",
+      "title": "Founders Were Discovered",
+      "subtitle": "Student innovations evaluated on execution capacity, market fit, and scalable design.",
+      "icon": "Sparkles",
+      "gradient": "from-brand-purple to-cyan-500",
+      "bgImage": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "highlight-3",
+      "title": "Connections Were Made",
+      "subtitle": "Building enduring networks across Iqra University and the broader tech community.",
+      "icon": "Users",
+      "gradient": "from-cyan-500 to-emerald-500",
+      "bgImage": "/uploads/image_cropped_1791034680434_mb9fh.jpg"
+    },
+    {
+      "id": "highlight-4",
+      "title": "Excellence Recognized",
+      "subtitle": "Celebrating top winning teams on the main Spectrum stage with official awards.",
+      "icon": "Award",
+      "gradient": "from-brand-orange to-amber-500",
+      "bgImage": "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop"
+    }
+  ],
+  "prizePool": {
+    "headline": "PRIZE POOL & SPONSOR AWARDS",
+    "status": "tba",
+    "statusBadge": "Sponsorship in Progress",
+    "note": "Final cash prize pool, corporate sponsor awards, and perks will be announced once sponsorship packages are locked. Winning teams receive official trophies, Iqra University endorsement, and Spectrum 2.0 main stage recognition.",
+    "blocks": [
+      {
+        "id": "prize-1",
+        "title": "Grand Champion (1st Place)",
+        "amount": "Cash Reward + Official Trophy",
+        "description": "Top overall venture across physical & virtual tracks. Spectrum main stage trophy presentation and investor introductions.",
+        "badge": "1st Prize",
+        "perks": [
+          "Spectrum 2.0 Main Stage Trophy",
+          "Investor Network Handoff",
+          "Premier Marquee Showcase Booth"
+        ]
+      },
+      {
+        "id": "prize-2",
+        "title": "1st Runner-Up (2nd Place)",
+        "amount": "Cash Reward + Official Award",
+        "description": "Recognizing outstanding business execution, market validation, and high potential scalability.",
+        "badge": "2nd Prize",
+        "perks": [
+          "Official Society Silver Shield",
+          "Incubation Fast-Track Access",
+          "Showcase Marquee Display"
+        ]
+      },
+      {
+        "id": "prize-3",
+        "title": "2nd Runner-Up (3rd Place)",
+        "amount": "Cash Reward + Certificate",
+        "description": "Awarded for technical brilliance, creative problem solving, and compelling prototype execution.",
+        "badge": "3rd Prize",
+        "perks": [
+          "Official Society Bronze Shield",
+          "Ecosystem Mentorship Hours",
+          "Promotional Social Spotlight"
+        ]
+      },
+      {
+        "id": "prize-4",
+        "title": "Ecosystem & Sponsor Perks",
+        "amount": "Showcase Stalls & Credits",
+        "description": "Exclusive partner benefits, promotional showcase stalls at Spectrum 2.0 Marquee, and accelerator partner credits.",
+        "badge": "All Finalists",
+        "perks": [
+          "Free Showcase Marquee Stall",
+          "University & Media Coverage",
+          "Official Certificate of Excellence"
+        ]
+      }
+    ]
+  },
+  "featuredStartups": [
+    {
+      "id": "startup-1",
+      "name": "QuantumPay",
+      "tag": "Fintech • MVP"
+    },
+    {
+      "id": "startup-2",
+      "name": "EcoGrid",
+      "tag": "Cleantech • Prototype"
+    },
+    {
+      "id": "startup-3",
+      "name": "HealthPulse",
+      "tag": "Healthtech • Traction"
+    },
+    {
+      "id": "startup-4",
+      "name": "AgriSense",
+      "tag": "Agtech • Prototype"
+    },
+    {
+      "id": "startup-5",
+      "name": "LogiFlow",
+      "tag": "Logistics • Revenue"
+    },
+    {
+      "id": "startup-6",
+      "name": "EduSphere",
+      "tag": "Edtech • MVP"
+    },
+    {
+      "id": "startup-7",
+      "name": "CypherAI",
+      "tag": "Deeptech • Prototype"
+    },
+    {
+      "id": "startup-8",
+      "name": "RetailPulse",
+      "tag": "SaaS • Traction"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "Who can apply for IdeaVerse 2.0?",
+      "answer": "Student founders and emerging startups from Iqra University, Karachi, and cities across Sindh are eligible to apply."
+    },
+    {
+      "id": "faq-2",
+      "question": "Can startups outside Iqra University participate?",
+      "answer": "Yes! IdeaVerse 2.0 welcomes eligible startups from any recognized institute or city in Sindh."
+    },
+    {
+      "id": "faq-3",
+      "question": "Can teams outside Karachi participate?",
+      "answer": "Yes. Non-Karachi teams in Sindh participate via Virtual Pitching rounds. If selected, they may be invited to the physical Showcase Marquee."
+    },
+    {
+      "id": "faq-4",
+      "question": "What is the maximum team size?",
+      "answer": "A team can consist of a maximum of 4 members including the Team Lead."
+    },
+    {
+      "id": "faq-5",
+      "question": "What startup stage is required?",
+      "answer": "Startups must at minimum have a Prototype or MVP/Product Ready stage. Pure napkin/idea-stage concepts without a working prototype are not eligible."
+    },
+    {
+      "id": "faq-6",
+      "question": "Does submitting an application mean I have been selected?",
+      "answer": "No. Submitting an application enters your startup into the screening phase. Shortlisted teams will be officially notified before pitching rounds."
+    },
+    {
+      "id": "faq-7",
+      "question": "Will there be prize money?",
+      "answer": "Prize details and awards will be officially announced once final sponsorship packages are confirmed. Details can be viewed in the Prize Pool section."
+    },
+    {
+      "id": "faq-8",
+      "question": "When will shortlisted startups be contacted?",
+      "answer": "Dates for screening announcements will be shared with applicants via email and WhatsApp after applications close."
+    }
+  ]
+}

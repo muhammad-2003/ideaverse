@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Syne', system-ui, sans-serif;
+  }
+
+  body {
+    background-color: #F6F8FF;
+    color: #0F172A;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    selection-background-color: #0B2B82;
+    selection-color: #FFFFFF;
+  }
+}
+
+/* Custom Scrollbar - Spectrum Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F6F8FF;
+}
+::-webkit-scrollbar-thumb {
+  background: #0B2B82;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7C3AED;
+}
+
+/* Horizontal Mask Fade for Marquee */
+.mask-horizontal {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Spectrum Rainbow Border Utility */
+.spectrum-border {
+  border-image: linear-gradient(90deg, #0B2B82, #7C3AED, #00D8F6, #10B981, #F59E0B, #FF5500) 1;
+}
+
+/* Soft Glow Effects */
+.spectrum-glow-blue {
+  box-shadow: 0 10px 30px -5px rgba(11, 43, 130, 0.15);
+}
+.spectrum-glow-orange {
+  box-shadow: 0 10px 30px -5px rgba(255, 85, 0, 0.15);
+}

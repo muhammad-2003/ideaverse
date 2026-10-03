@@ -1,0 +1,166 @@
+[
+  {
+    "id": "chat_1791033955894_o0q3k",
+    "userName": "Muhammad",
+    "userEmail": "test@test.com",
+    "status": "open",
+    "unreadAdminCount": 0,
+    "unreadUserCount": 0,
+    "createdAt": "2026-10-03T13:25:55.894Z",
+    "updatedAt": "2026-10-03T13:27:18.883Z",
+    "messages": [
+      {
+        "id": "msg_welcome_1791033955895",
+        "threadId": "chat_1791033955894_o0q3k",
+        "sender": "admin",
+        "senderName": "IdeaVerse Desk",
+        "message": "Hello Muhammad! 👋 Welcome to IdeaVerse 2.0 query desk. An organizer has been notified and will reply shortly. Please type your query below!",
+        "timestamp": "2026-10-03T13:25:55.894Z"
+      },
+      {
+        "id": "msg_usr_1791033955895",
+        "threadId": "chat_1791033955894_o0q3k",
+        "sender": "user",
+        "senderName": "Muhammad",
+        "message": "Check",
+        "timestamp": "2026-10-03T13:25:55.894Z"
+      },
+      {
+        "id": "msg_1791034005018_k8k4",
+        "threadId": "chat_1791033955894_o0q3k",
+        "sender": "admin",
+        "senderName": "IdeaVerse Organizing Team",
+        "message": "How can we help you",
+        "timestamp": "2026-10-03T13:26:45.018Z"
+      },
+      {
+        "id": "msg_1791034023204_n49k",
+        "threadId": "chat_1791033955894_o0q3k",
+        "sender": "user",
+        "senderName": "Muhammad",
+        "message": "Who is eligible to participate?",
+        "timestamp": "2026-10-03T13:27:03.204Z"
+      },
+      {
+        "id": "msg_1791034038883_p3wc",
+        "threadId": "chat_1791033955894_o0q3k",
+        "sender": "admin",
+        "senderName": "IdeaVerse Organizing Team",
+        "message": "University students",
+        "timestamp": "2026-10-03T13:27:18.883Z"
+      }
+    ],
+    "lastMessage": "University students"
+  },
+  {
+    "id": "chat_1791033822213_9gesb",
+    "userName": "Zainab Tariq",
+    "userEmail": "zainab@example.com",
+    "status": "resolved",
+    "unreadAdminCount": 0,
+    "unreadUserCount": 0,
+    "createdAt": "2026-10-03T13:23:42.213Z",
+    "updatedAt": "2026-10-03T13:23:42.382Z",
+    "messages": [
+      {
+        "id": "msg_welcome_1791033822213",
+        "threadId": "chat_1791033822213_9gesb",
+        "sender": "admin",
+        "senderName": "IdeaVerse Desk",
+        "message": "Hello Zainab Tariq! 👋 Welcome to IdeaVerse 2.0 query desk. An organizer has been notified and will reply shortly. Please type your query below!",
+        "timestamp": "2026-10-03T13:23:42.213Z"
+      },
+      {
+        "id": "msg_usr_1791033822213",
+        "threadId": "chat_1791033822213_9gesb",
+        "sender": "user",
+        "senderName": "Zainab Tariq",
+        "message": "Can cross-university teams win the cash prize pool?",
+        "timestamp": "2026-10-03T13:23:42.213Z"
+      },
+      {
+        "id": "msg_1791033822320_22nt",
+        "threadId": "chat_1791033822213_9gesb",
+        "sender": "admin",
+        "senderName": "IdeaVerse Organizing Team",
+        "message": "Hello Zainab! Yes, cross-university teams are 100% eligible for the PKR 500,000+ prize pool.",
+        "timestamp": "2026-10-03T13:23:42.320Z"
+      }
+    ],
+    "lastMessage": "Hello Zainab! Yes, cross-university teams are 100% eligible for the PKR 500,000+ prize pool."
+  },
+  {
+    "id": "chat_seed_1",
+    "userName": "Hamza Farooq",
+    "userEmail": "hamza.f@iba.edu.pk",
+    "status": "open",
+    "unreadAdminCount": 0,
+    "unreadUserCount": 0,
+    "createdAt": "2026-10-03T11:23:42.199Z",
+    "updatedAt": "2026-10-03T13:08:42.200Z",
+    "lastMessage": "Can team members be from two different universities, or must everyone be from the same institution?",
+    "messages": [
+      {
+        "id": "msg_seed_1_1",
+        "threadId": "chat_seed_1",
+        "sender": "user",
+        "senderName": "Hamza Farooq",
+        "message": "Hi! We are forming a team for IdeaVerse 2.0. Can team members be from two different universities, or must everyone be from the same institution?",
+        "timestamp": "2026-10-03T11:23:42.200Z"
+      },
+      {
+        "id": "msg_seed_1_2",
+        "threadId": "chat_seed_1",
+        "sender": "admin",
+        "senderName": "IdeaVerse Organizing Team",
+        "message": "Hello Hamza! Yes, cross-university collaborations are allowed and encouraged. As long as your team lead is an enrolled student or recent graduate within 1 year, you are eligible to pitch.",
+        "timestamp": "2026-10-03T11:53:42.200Z"
+      },
+      {
+        "id": "msg_seed_1_3",
+        "threadId": "chat_seed_1",
+        "sender": "user",
+        "senderName": "Hamza Farooq",
+        "message": "Awesome, thanks! And what is the maximum number of members allowed in a pitch team?",
+        "timestamp": "2026-10-03T13:08:42.200Z"
+      }
+    ]
+  },
+  {
+    "id": "chat_seed_2",
+    "userName": "Ayesha Siddiqui",
+    "userEmail": "ayesha.s@fast.nu.edu.pk",
+    "status": "resolved",
+    "unreadAdminCount": 0,
+    "unreadUserCount": 0,
+    "createdAt": "2026-10-02T13:23:42.200Z",
+    "updatedAt": "2026-10-02T19:23:42.200Z",
+    "lastMessage": "Got it, thank you so much for the clarification!",
+    "messages": [
+      {
+        "id": "msg_seed_2_1",
+        "threadId": "chat_seed_2",
+        "sender": "user",
+        "senderName": "Ayesha Siddiqui",
+        "message": "Hello! Is the physical pitch round mandatory, or can outstation teams pitch virtually via Zoom/Meet?",
+        "timestamp": "2026-10-02T13:23:42.200Z"
+      },
+      {
+        "id": "msg_seed_2_2",
+        "threadId": "chat_seed_2",
+        "sender": "admin",
+        "senderName": "IdeaVerse Organizing Team",
+        "message": "Hi Ayesha! We offer hybrid pitching. Outstation startups outside Karachi can participate in virtual screening and virtual pitch slots.",
+        "timestamp": "2026-10-02T17:23:42.200Z"
+      },
+      {
+        "id": "msg_seed_2_3",
+        "threadId": "chat_seed_2",
+        "sender": "user",
+        "senderName": "Ayesha Siddiqui",
+        "message": "Got it, thank you so much for the clarification!",
+        "timestamp": "2026-10-02T19:23:42.200Z"
+      }
+    ]
+  }
+]
