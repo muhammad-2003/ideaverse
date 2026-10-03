@@ -13,7 +13,7 @@ export interface EventConfig {
   applicationsOpen: boolean;
   googleFormUrl: string;
   instagramUrl: string;
-  linkedinUrl: string;
+  linkedinUrl?: string;
   contactEmail: string;
   prizeMoneyConfirmed: boolean;
   prizePoolText: string | null;
@@ -53,8 +53,8 @@ export const eventConfig: EventConfig = {
   venueConfirmed: false,
 
   googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-placeholder-ideaverse-2026/viewform",
-  instagramUrl: "https://instagram.com/iu.entrepreneurshipsociety",
-  linkedinUrl: "https://linkedin.com/company/iu-entrepreneurship-society",
+  instagramUrl: "https://www.instagram.com/entrepreneurshipsociety.iu/",
+  linkedinUrl: "",
   contactEmail: "entrepreneurship.society@iqra.edu.pk",
 
   prizeMoneyConfirmed: false,

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Linkedin, Mail } from 'lucide-react';
+import { Instagram, Mail } from 'lucide-react';
 import { eventConfig } from '@/config/event';
 
 export const Footer: React.FC = () => {
@@ -59,28 +59,11 @@ export const Footer: React.FC = () => {
                 href={eventConfig.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 hover:text-brand-orange hover:border-brand-orange transition-all min-h-[44px] min-w-[44px]"
+                className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 hover:text-[#E4405F] hover:border-[#E4405F]/40 hover:bg-rose-50/50 transition-all min-h-[44px] min-w-[44px] shadow-2xs group"
                 aria-label="Instagram"
+                title="Follow IU Entrepreneurship Society on Instagram"
               >
-                <Instagram className="w-4 h-4" />
-              </a>
-
-              <a
-                href={eventConfig.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 hover:text-brand-orange hover:border-brand-orange transition-all min-h-[44px] min-w-[44px]"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-
-              <a
-                href={`mailto:${eventConfig.contactEmail}`}
-                className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 hover:text-brand-orange hover:border-brand-orange transition-all min-h-[44px] min-w-[44px]"
-                aria-label="Contact Email"
-              >
-                <Mail className="w-4 h-4" />
+                <Instagram className="w-4 h-4 text-slate-700 group-hover:text-[#E4405F] transition-colors" />
               </a>
             </div>
           </div>
@@ -102,12 +85,22 @@ export const Footer: React.FC = () => {
           {/* Ecosystem Links */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-brand-navy">
-              Ecosystem & Legal
+              Ecosystem & Contact
             </h4>
             <ul className="space-y-2 text-xs text-slate-600 font-medium">
               <li><span className="text-brand-navy font-bold">{eventConfig.university}</span></li>
               <li><span className="text-brand-orange font-bold">{eventConfig.organizer}</span></li>
               <li><span className="text-brand-navy font-bold">{eventConfig.parentEvent}</span></li>
+              <li>
+                <a
+                  href={`mailto:${eventConfig.contactEmail}`}
+                  className="hover:text-brand-orange transition-colors inline-flex items-center gap-1.5 py-0.5"
+                  title="Send email"
+                >
+                  <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span className="truncate">{eventConfig.contactEmail}</span>
+                </a>
+              </li>
               <li><Link href="/privacy" className="hover:text-brand-orange transition-colors py-1 inline-block">Privacy Policy</Link></li>
             </ul>
           </div>
