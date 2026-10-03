@@ -288,48 +288,86 @@ export function LiveChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end max-w-[calc(100vw-1rem)]">
-      {/* Chat Window */}
+    <>
+      {/* Floating Toggle Button (Hidden when mobile chat is open) */}
+      <div className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 ${isOpen ? 'hidden sm:flex' : 'flex'}`}>
+        <button
+          onClick={() => {
+            if (isOpen) {
+              setIsOpen(false);
+            } else {
+              handleOpenWidget();
+            }
+          }}
+          className="group relative flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-gradient-to-r from-brand-navy via-brand-navyDark to-brand-orange text-white shadow-2xl hover:shadow-brand-orange/40 hover:scale-105 active:scale-95 transition-all duration-200 border border-white/20"
+          aria-label="Toggle Live Chat"
+        >
+          <div className="relative">
+            <MessageSquare className="w-5 h-5 text-white" />
+            {unreadBadge > 0 && (
+              <span className="absolute -top-2 -right-2 w-5 h-5 bg-rose-500 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-white animate-pulse">
+                {unreadBadge}
+              </span>
+            )}
+          </div>
+          <span className="text-xs sm:text-sm font-extrabold tracking-wide font-display">
+            {isOpen ? 'Close Live Desk' : 'Live Query Desk'}
+          </span>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 group-hover:scale-125 transition shadow-xs" />
+        </button>
+      </div>
+
+      {/* Responsive Chat Window (Full Screen on Mobile, Floating Drawer on Tablet/Desktop) */}
       {isOpen && (
-        <div className="w-[calc(100vw-1.5rem)] xs:w-[350px] sm:w-[390px] h-[520px] sm:h-[550px] max-h-[82vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden mb-2 sm:mb-3 animate-in fade-in zoom-in-95 duration-200">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-brand-navy via-brand-navyDark to-[#0F3657] text-white p-4 flex items-center justify-between shadow-md relative shrink-0">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-orange font-black">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:w-[410px] sm:h-[600px] z-50 flex flex-col bg-white sm:rounded-3xl sm:border sm:border-slate-200 sm:shadow-2xl overflow-hidden animate-in fade-in sm:zoom-in-95 duration-200">
+          {/* Header Bar */}
+          <div className="bg-gradient-to-r from-brand-navy via-brand-navyDark to-[#0F3657] text-white px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between shadow-md relative shrink-0">
+            <div className="flex items-center gap-3 min-w-0">
+              {/* Back / Close button for mobile */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="sm:hidden p-2 -ml-1 text-slate-200 hover:text-white hover:bg-white/10 rounded-xl transition"
+                aria-label="Back to page"
+              >
+                <ChevronDown className="w-5 h-5" />
+              </button>
+
+              <div className="relative shrink-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-orange font-black">
                   <Bot className="w-5 h-5 text-brand-orange" />
                 </div>
                 <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-brand-navy rounded-full" />
               </div>
-              <div>
+
+              <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-bold text-sm tracking-tight text-white font-display">
+                  <h3 className="font-bold text-sm sm:text-base tracking-tight text-white font-display truncate">
                     IdeaVerse 2.0 Live Desk
                   </h3>
-                  <span className="text-[9px] uppercase tracking-wider font-extrabold bg-brand-orange/30 text-brand-orangeLight px-1.5 py-0.5 rounded-full border border-brand-orange/40">
+                  <span className="text-[9px] uppercase tracking-wider font-extrabold bg-brand-orange/30 text-brand-orangeLight px-1.5 py-0.5 rounded-full border border-brand-orange/40 shrink-0">
                     Live
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-300 flex items-center gap-1">
+                <p className="text-[11px] text-slate-300 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-ping" />
-                  Organizing Team Online
+                  Organizing Team Online • Fast Response
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 shrink-0">
               {threadId && (
                 <button
                   onClick={handleResetChat}
                   title="Start New Chat"
-                  className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition"
+                  className="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition"
                 >
                   <RotateCcw className="w-4 h-4" />
                 </button>
               )}
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition"
+                className="hidden sm:flex p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition"
                 aria-label="Close live chat"
               >
                 <X className="w-4 h-4" />
@@ -340,23 +378,23 @@ export function LiveChatWidget() {
           {/* Content Area */}
           {!threadId ? (
             /* STEP 1: Name & Email Onboarding Form */
-            <div className="flex-1 p-5 overflow-y-auto bg-slate-50/50 flex flex-col justify-between">
+            <div className="flex-1 p-5 sm:p-6 overflow-y-auto bg-slate-50/50 flex flex-col justify-between">
               <div>
-                <div className="text-center py-2">
-                  <div className="w-12 h-12 rounded-2xl bg-brand-navy/10 text-brand-navy flex items-center justify-center mx-auto mb-2 border border-brand-navy/15 shadow-sm">
-                    <Sparkles className="w-6 h-6 text-brand-orange" />
+                <div className="text-center py-2 sm:py-3">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-navy/10 text-brand-navy flex items-center justify-center mx-auto mb-2.5 border border-brand-navy/15 shadow-sm">
+                    <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-brand-orange" />
                   </div>
-                  <h4 className="font-bold text-brand-navy text-base font-display">
+                  <h4 className="font-bold text-brand-navy text-base sm:text-lg font-display">
                     Welcome to IdeaVerse 2.0
                   </h4>
-                  <p className="text-xs text-slate-500 mt-1 max-w-[280px] mx-auto">
-                    Ask any queries regarding applications, pitching formats, criteria, or prizes.
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-[300px] mx-auto leading-relaxed">
+                    Have questions about pitching formats, university eligibility, registration, or prizes? Ask us directly!
                   </p>
                 </div>
 
-                <form onSubmit={handleStartChat} className="space-y-3 mt-4">
+                <form onSubmit={handleStartChat} className="space-y-3.5 mt-3 sm:mt-4 max-w-sm mx-auto">
                   {startError && (
-                    <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
+                    <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
                       {startError}
                     </div>
                   )}
@@ -366,14 +404,14 @@ export function LiveChatWidget() {
                       Your Full Name <span className="text-brand-orange">*</span>
                     </label>
                     <div className="relative">
-                      <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                      <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                       <input
                         type="text"
                         required
                         value={inputName}
                         onChange={(e) => setInputName(e.target.value)}
                         placeholder="e.g. Sarah Khan"
-                        className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
+                        className="w-full pl-10 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
                       />
                     </div>
                   </div>
@@ -383,14 +421,14 @@ export function LiveChatWidget() {
                       Email Address <span className="text-brand-orange">*</span>
                     </label>
                     <div className="relative">
-                      <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                      <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                       <input
                         type="email"
                         required
                         value={inputEmail}
                         onChange={(e) => setInputEmail(e.target.value)}
                         placeholder="e.g. sarah@university.edu.pk"
-                        className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
+                        className="w-full pl-10 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
                       />
                     </div>
                   </div>
@@ -403,15 +441,15 @@ export function LiveChatWidget() {
                       rows={2}
                       value={initialQuestion}
                       onChange={(e) => setInitialQuestion(e.target.value)}
-                      placeholder="e.g. What is the deadline to register?"
-                      className="w-full p-2.5 text-xs rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800 resize-none"
+                      placeholder="e.g. How does virtual pitching work for outstation teams?"
+                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800 resize-none"
                     />
                   </div>
 
                   {/* Quick Starter Suggestions */}
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
-                      Popular Questions:
+                      Frequently Asked:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
                       {QUICK_QUESTIONS.map((q) => (
@@ -419,7 +457,7 @@ export function LiveChatWidget() {
                           key={q}
                           type="button"
                           onClick={() => handleQuickQuestionClick(q)}
-                          className="text-[10px] bg-white hover:bg-brand-orange/10 hover:border-brand-orange/40 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 transition text-left font-medium"
+                          className="text-[11px] bg-white hover:bg-brand-orange/10 hover:border-brand-orange/40 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 transition text-left font-medium active:scale-95"
                         >
                           {q}
                         </button>
@@ -430,37 +468,37 @@ export function LiveChatWidget() {
                   <button
                     type="submit"
                     disabled={isStarting}
-                    className="w-full mt-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orangeLight text-white font-bold text-xs shadow-lg shadow-brand-orange/20 hover:shadow-brand-orange/40 transition active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="w-full mt-3 py-3 sm:py-3.5 px-5 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-orangeLight text-white font-bold text-xs sm:text-sm shadow-lg shadow-brand-orange/25 hover:shadow-brand-orange/40 transition active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {isStarting ? (
                       <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     ) : (
                       <>
                         <span>Start Live Conversation</span>
-                        <Send className="w-3.5 h-3.5" />
+                        <Send className="w-4 h-4" />
                       </>
                     )}
                   </button>
                 </form>
               </div>
 
-              <div className="text-center pt-2 text-[10px] text-slate-400">
+              <div className="text-center pt-3 text-[11px] text-slate-400">
                 Responses are handled live by the Spectrum 2.0 / IdeaVerse admin desk.
               </div>
             </div>
           ) : (
             /* STEP 2: Live Chat Messaging Stream */
-            <div className="flex-1 flex flex-col justify-between bg-slate-50/70 overflow-hidden">
+            <div className="flex-1 flex flex-col justify-between bg-slate-50/80 overflow-hidden">
               {/* Thread Status Bar */}
               {thread?.status === 'resolved' && (
-                <div className="bg-emerald-50 border-b border-emerald-200 px-3 py-1.5 text-center text-[11px] text-emerald-800 font-semibold flex items-center justify-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  Query marked resolved by support. Type anytime to reopen!
+                <div className="bg-emerald-50 border-b border-emerald-200 px-4 py-2 text-center text-xs text-emerald-800 font-semibold flex items-center justify-center gap-1.5 shrink-0">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  <span>Query marked resolved by organizing team. Type anytime to reopen!</span>
                 </div>
               )}
 
               {/* Messages Area */}
-              <div className="flex-1 p-4 overflow-y-auto space-y-3">
+              <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-3.5 sm:space-y-4">
                 {thread?.messages.map((msg) => {
                   const isAdmin = msg.sender === 'admin';
                   return (
@@ -468,7 +506,7 @@ export function LiveChatWidget() {
                       key={msg.id}
                       className={`flex flex-col ${isAdmin ? 'items-start' : 'items-end'}`}
                     >
-                      <div className="flex items-center gap-1 mb-1 text-[10px] text-slate-400 font-medium">
+                      <div className="flex items-center gap-1.5 mb-1 text-[10px] text-slate-400 font-medium px-1">
                         <span>{isAdmin ? 'IdeaVerse Desk' : 'You'}</span>
                         <span>•</span>
                         <span>
@@ -479,7 +517,7 @@ export function LiveChatWidget() {
                         </span>
                       </div>
                       <div
-                        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed shadow-sm break-words ${
+                        className={`max-w-[85%] sm:max-w-[80%] rounded-2xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm leading-relaxed shadow-sm break-words ${
                           isAdmin
                             ? 'bg-brand-navy text-white rounded-tl-sm border border-brand-navyDark'
                             : 'bg-gradient-to-r from-brand-orange to-brand-orangeLight text-white rounded-tr-sm font-medium shadow-brand-orange/20'
@@ -493,15 +531,15 @@ export function LiveChatWidget() {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Quick suggestion pills if conversation is short */}
+              {/* Quick suggestion pills if conversation is fresh */}
               {thread && thread.messages.length <= 3 && (
-                <div className="px-3 py-1.5 bg-white/80 border-t border-slate-200 overflow-x-auto flex gap-1.5 no-scrollbar">
+                <div className="px-3 py-2 bg-white/90 border-t border-slate-200 overflow-x-auto flex gap-1.5 no-scrollbar shrink-0">
                   {QUICK_QUESTIONS.slice(0, 3).map((q) => (
                     <button
                       key={q}
                       type="button"
                       onClick={() => handleQuickQuestionClick(q)}
-                      className="whitespace-nowrap text-[10px] bg-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange px-2 py-1 rounded-md text-slate-600 transition"
+                      className="whitespace-nowrap text-[11px] bg-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange px-3 py-1.5 rounded-lg text-slate-700 font-medium transition active:scale-95"
                     >
                       {q}
                     </button>
@@ -509,57 +547,31 @@ export function LiveChatWidget() {
                 </div>
               )}
 
-              {/* Input Bar */}
+              {/* Input Bar with Comfortable Mobile Spacing */}
               <form
                 onSubmit={handleSendMessage}
-                className="p-3 bg-white border-t border-slate-200 flex items-center gap-2"
+                className="p-3 sm:p-4 bg-white border-t border-slate-200 flex items-center gap-2.5 shrink-0 safe-bottom"
               >
                 <input
                   type="text"
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
-                  placeholder="Ask a question..."
-                  className="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
+                  placeholder="Type your question..."
+                  className="flex-1 px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-full border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
                 />
                 <button
                   type="submit"
                   disabled={!messageText.trim() || isSending}
-                  className="p-2 rounded-xl bg-brand-orange hover:bg-brand-orangeLight text-white disabled:opacity-40 transition shadow-sm active:scale-95 shrink-0"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-orange hover:bg-brand-orangeLight text-white disabled:opacity-40 transition shadow-md active:scale-95 flex items-center justify-center shrink-0"
                   aria-label="Send message"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </form>
             </div>
           )}
         </div>
       )}
-
-      {/* Floating Toggle Button */}
-      <button
-        onClick={() => {
-          if (isOpen) {
-            setIsOpen(false);
-          } else {
-            handleOpenWidget();
-          }
-        }}
-        className="group relative flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-brand-navy via-brand-navyDark to-brand-orange text-white shadow-2xl hover:shadow-brand-orange/40 hover:scale-105 active:scale-95 transition-all duration-200 border border-white/20"
-        aria-label="Toggle Live Chat"
-      >
-        <div className="relative">
-          <MessageSquare className="w-5 h-5 text-white" />
-          {unreadBadge > 0 && (
-            <span className="absolute -top-2 -right-2 w-5 h-5 bg-rose-500 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-white animate-pulse">
-              {unreadBadge}
-            </span>
-          )}
-        </div>
-        <span className="text-xs font-extrabold tracking-wide font-display hidden sm:inline-block">
-          {isOpen ? 'Close Chat' : 'Query Desk'}
-        </span>
-        <span className="w-2 h-2 rounded-full bg-emerald-400 group-hover:scale-125 transition" />
-      </button>
-    </div>
+    </>
   );
 }

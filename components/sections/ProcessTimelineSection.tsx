@@ -16,7 +16,7 @@ export const ProcessTimelineSection: React.FC = () => {
           <Badge variant="navy" size="md">
             The Journey
           </Badge>
-          <h2 className="text-3xl xs:text-4xl sm:text-6xl font-black font-display text-brand-navy tracking-tight">
+          <h2 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black font-display text-brand-navy tracking-tight leading-tight px-2">
             HOW IDEAVERSE{' '}
             <span className="bg-gradient-to-r from-brand-navy via-[#003B66] to-brand-orange bg-clip-text text-transparent">
               WORKS.

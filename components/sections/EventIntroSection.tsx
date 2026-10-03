@@ -18,7 +18,7 @@ export const EventIntroSection: React.FC = () => {
               Spectrum 2.0 Parent Ecosystem
             </Badge>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display text-brand-darkText tracking-tighter uppercase leading-[0.95]">
+            <h2 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black font-display text-brand-darkText tracking-tight uppercase leading-[1.05]">
               WHERE TALENT MEETS THE NATION{' '}
               <span className="bg-gradient-to-r from-brand-navy via-brand-blue to-brand-orange bg-clip-text text-transparent">
                 IN SINDH.

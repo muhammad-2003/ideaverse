@@ -24,7 +24,7 @@ export const PrizePoolSection: React.FC = () => {
             </Badge>
           </div>
 
-          <h2 className="text-3xl xs:text-4xl sm:text-6xl font-black font-display text-brand-darkText tracking-tight uppercase">
+          <h2 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black font-display text-brand-darkText tracking-tight uppercase leading-tight px-2">
             {prizeData.headline || 'PRIZE POOL & SPONSOR AWARDS'}
           </h2>
 

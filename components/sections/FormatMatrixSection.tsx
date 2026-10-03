@@ -15,7 +15,7 @@ export const FormatMatrixSection: React.FC = () => {
           <Badge variant="blue" size="md">
             Unified Competition Framework
           </Badge>
-          <h2 className="text-3xl xs:text-4xl sm:text-6xl font-black font-display text-brand-darkText tracking-tight">
+          <h2 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black font-display text-brand-darkText tracking-tight leading-tight px-2">
             PARTICIPATION{' '}
             <span className="bg-gradient-to-r from-brand-blue via-brand-purple to-brand-orange bg-clip-text text-transparent">
               FORMATS.

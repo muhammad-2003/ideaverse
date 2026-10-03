@@ -15,6 +15,7 @@ import {
   Bot,
   ExternalLink,
   RotateCcw,
+  ArrowLeft,
   Check,
   AlertCircle,
   Volume2,
@@ -307,54 +308,54 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      {/* Top KPI Cards - 2 cols on mobile, 4 cols on desktop */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
-        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+      {/* Top KPI Cards - Horizontal scroll on mobile, 4 cols on desktop */}
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:grid sm:grid-cols-4 sm:gap-4 sm:pb-0">
+        <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-2.5 sm:p-4 shadow-xs shrink-0 min-w-[125px] sm:min-w-0">
           <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500">
-            Total Inquiries
+            Total Queries
           </div>
-          <div className="text-xl sm:text-2xl font-black text-brand-navy mt-0.5 sm:mt-1 font-display">
+          <div className="text-lg sm:text-2xl font-black text-brand-navy mt-0.5 sm:mt-1 font-display">
             {totalInquiries}
           </div>
-          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">All time visitor queries</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">All time visitor queries</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+        <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-2.5 sm:p-4 shadow-xs shrink-0 min-w-[125px] sm:min-w-0">
           <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-amber-600">
             Active / Open
           </div>
-          <div className="text-xl sm:text-2xl font-black text-amber-600 mt-0.5 sm:mt-1 font-display">
+          <div className="text-lg sm:text-2xl font-black text-amber-600 mt-0.5 sm:mt-1 font-display">
             {openInquiries}
           </div>
-          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">Awaiting organizer review</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Awaiting organizer review</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+        <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-2.5 sm:p-4 shadow-xs shrink-0 min-w-[125px] sm:min-w-0">
           <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-rose-600 flex items-center justify-between">
             <span>Needs Reply</span>
             {unreadInquiries > 0 && (
-              <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping ml-1" />
             )}
           </div>
-          <div className="text-xl sm:text-2xl font-black text-rose-600 mt-0.5 sm:mt-1 font-display">
+          <div className="text-lg sm:text-2xl font-black text-rose-600 mt-0.5 sm:mt-1 font-display">
             {unreadInquiries}
           </div>
-          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">Unread messages</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Unread messages</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+        <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-2.5 sm:p-4 shadow-xs shrink-0 min-w-[125px] sm:min-w-0">
           <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-600">
             Resolved
           </div>
-          <div className="text-xl sm:text-2xl font-black text-emerald-600 mt-0.5 sm:mt-1 font-display">
+          <div className="text-lg sm:text-2xl font-black text-emerald-600 mt-0.5 sm:mt-1 font-display">
             {resolvedInquiries}
           </div>
-          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">Completed inquiries</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Completed inquiries</div>
         </div>
       </div>
 
       {/* Main Console Box with Responsive Height */}
-      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[580px] xs:h-[620px] sm:h-[680px] lg:h-[740px] max-h-[85vh]">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[calc(100vh-210px)] min-h-[520px] sm:h-[680px] lg:h-[740px]">
         {/* Desk Toolbar */}
         <div className="p-3 sm:p-4 border-b border-slate-200 bg-slate-50/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 shrink-0">
           {/* Search bar & filter pills */}
@@ -548,17 +549,17 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
             {selectedThread ? (
               <>
                 {/* Thread Header with Mobile Back Button */}
-                <div className="p-3 sm:p-4 border-b border-slate-200 flex items-center justify-between gap-2 sm:gap-4 bg-slate-50/70 shrink-0">
+                <div className="p-3 sm:p-4 border-b border-slate-200 flex items-center justify-between gap-2 sm:gap-4 bg-slate-50/80 shrink-0">
                   <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                    {/* Mobile Back Button */}
+                    {/* Mobile Back Button with clear label */}
                     <button
                       onClick={() => setMobileView('list')}
-                      className="md:hidden p-1.5 -ml-1 text-slate-600 hover:text-brand-navy hover:bg-slate-200/70 rounded-xl transition flex items-center gap-1 font-bold text-xs shrink-0"
+                      className="md:hidden px-2 py-1.5 -ml-1 text-slate-700 hover:text-brand-navy hover:bg-slate-200/80 rounded-xl transition flex items-center gap-1 font-bold text-xs shrink-0 bg-white border border-slate-200"
                       aria-label="Back to inquiries list"
                       title="Back to inquiries list"
                     >
-                      <RotateCcw className="w-4 h-4 text-brand-orange" />
-                      <span className="text-[11px] font-extrabold">All</span>
+                      <ArrowLeft className="w-4 h-4 text-brand-orange" />
+                      <span className="text-[11px] font-black">All</span>
                     </button>
 
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-2xl bg-brand-orange/10 text-brand-orange border border-brand-orange/20 flex items-center justify-center font-bold text-xs sm:text-sm shrink-0">
@@ -573,7 +574,7 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                         <Badge
                           variant={selectedThread.status === 'open' ? 'amber' : 'emerald'}
                           size="sm"
-                          className="scale-90 sm:scale-100 origin-left"
+                          className="scale-85 sm:scale-100 origin-left"
                         >
                           {selectedThread.status === 'open' ? 'Open' : 'Resolved'}
                         </Badge>
@@ -619,7 +620,7 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                 </div>
 
                 {/* Messages Feed */}
-                <div className="flex-1 p-3 sm:p-5 overflow-y-auto space-y-3 sm:space-y-4 bg-slate-50/30">
+                <div className="flex-1 p-3.5 sm:p-5 overflow-y-auto space-y-3 sm:space-y-4 bg-slate-50/40">
                   {selectedThread.messages.map((msg) => {
                     const isAdmin = msg.sender === 'admin';
                     return (
@@ -640,7 +641,7 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                           </span>
                         </div>
                         <div
-                          className={`max-w-[90%] sm:max-w-[80%] rounded-2xl px-3.5 sm:px-4 py-2 sm:py-3 text-xs leading-relaxed shadow-xs break-words ${
+                          className={`max-w-[88%] sm:max-w-[80%] rounded-2xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm leading-relaxed shadow-xs break-words ${
                             isAdmin
                               ? 'bg-brand-navy text-white rounded-tr-sm font-medium border border-brand-navyDark'
                               : 'bg-white text-slate-800 rounded-tl-sm border border-slate-200 shadow-slate-100'
@@ -671,14 +672,14 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                   ))}
                 </div>
 
-                {/* Reply Composer Box */}
+                {/* Reply Composer Box - Modern, spacious layout on mobile */}
                 <form
                   onSubmit={handleSendReply}
-                  className="p-3 sm:p-4 border-t border-slate-200 bg-white flex flex-col gap-2 shrink-0"
+                  className="p-2.5 sm:p-4 border-t border-slate-200 bg-white flex flex-col gap-2 shrink-0 safe-bottom"
                 >
-                  <div className="relative">
+                  <div className="flex items-center gap-2">
                     <textarea
-                      rows={2}
+                      rows={1}
                       value={replyText}
                       onChange={(e) => setReplyText(e.target.value)}
                       onKeyDown={(e) => {
@@ -687,26 +688,20 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                           handleSendReply();
                         }
                       }}
-                      placeholder={`Reply to ${selectedThread.userName}... (Ctrl+Enter)`}
-                      className="w-full p-2.5 sm:p-3 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-navy/30 focus:border-brand-navy text-slate-800 resize-none"
+                      placeholder={`Reply to ${selectedThread.userName}...`}
+                      className="flex-1 px-3.5 py-2.5 sm:p-3 text-xs sm:text-sm rounded-2xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-navy/30 focus:border-brand-navy text-slate-800 resize-none max-h-28"
                     />
-                  </div>
-
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] sm:text-[11px] text-slate-400 hidden xs:inline">
-                      Press <kbd className="px-1.5 py-0.5 rounded bg-slate-100 border text-[10px] font-mono">Ctrl + Enter</kbd> to send
-                    </span>
                     <button
                       type="submit"
                       disabled={!replyText.trim() || isSending}
-                      className="w-full xs:w-auto py-2 px-5 rounded-xl bg-gradient-to-r from-brand-navy to-brand-navyDark text-white text-xs font-bold hover:shadow-lg transition active:scale-95 disabled:opacity-40 flex items-center justify-center gap-2"
+                      className="w-10 h-10 sm:w-auto sm:px-5 sm:py-2.5 rounded-full sm:rounded-xl bg-gradient-to-r from-brand-navy to-brand-navyDark text-white text-xs font-bold hover:shadow-lg transition active:scale-95 disabled:opacity-40 flex items-center justify-center gap-2 shrink-0"
                     >
                       {isSending ? (
-                        <span className="inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       ) : (
                         <>
-                          <span>Send Reply</span>
-                          <Send className="w-3.5 h-3.5" />
+                          <span className="hidden sm:inline">Send Reply</span>
+                          <Send className="w-4 h-4" />
                         </>
                       )}
                     </button>

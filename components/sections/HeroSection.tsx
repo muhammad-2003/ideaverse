@@ -93,7 +93,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
             />
           </div>
 
-          <p className="max-w-3xl mx-auto text-sm sm:text-lg md:text-xl text-brand-navy font-sans font-medium leading-relaxed pt-1 sm:pt-2 px-2">
+          <p className="max-w-3xl mx-auto text-xs xs:text-sm sm:text-base md:text-lg text-brand-navy font-sans font-medium leading-relaxed pt-1 sm:pt-2 px-3">
             Sindh&apos;s premier high-energy startup pitching & showcase competition. Bringing together student founders and emerging startups to build a bright entrepreneurial future.
           </p>
         </motion.div>
@@ -103,20 +103,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 py-3 sm:py-4 px-6 sm:px-8 rounded-2xl sm:rounded-full bg-white border border-slate-200 shadow-lg sm:shadow-xl shadow-slate-200/70 text-xs sm:text-sm text-brand-navy font-bold w-full sm:w-auto"
+          className="inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 py-2.5 sm:py-4 px-4 sm:px-8 rounded-2xl sm:rounded-full bg-white border border-slate-200 shadow-md sm:shadow-xl shadow-slate-200/70 text-xs sm:text-sm text-brand-navy font-bold w-full sm:w-auto"
         >
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-brand-orange" />
+            <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-orange shrink-0" />
             <span>{eventConfig.eventPeriod}</span>
           </div>
           <span className="hidden sm:inline text-slate-300">|</span>
           <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-brand-navy" />
+            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-navy shrink-0" />
             <span>{eventConfig.venue}</span>
           </div>
           <span className="hidden sm:inline text-slate-300">|</span>
           <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-brand-orange" />
+            <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-orange shrink-0" />
             <span>Up to {eventConfig.maxTeamSize} Members / Team</span>
           </div>
         </motion.div>
@@ -133,7 +133,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
               variant="primary"
               size="lg"
               icon={Sparkles}
-              className="w-full sm:w-auto text-xs sm:text-sm uppercase tracking-widest py-4 sm:py-5 px-8 sm:px-12 min-h-[44px]"
+              className="w-full sm:w-auto text-xs sm:text-sm uppercase tracking-widest py-3.5 sm:py-5 px-8 sm:px-12 min-h-[44px]"
             >
               Apply for IdeaVerse 2.0
             </Button>
@@ -147,7 +147,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
             variant="secondary"
             size="lg"
             icon={ArrowRight}
-            className="w-full sm:w-auto text-xs sm:text-sm uppercase tracking-widest py-4 sm:py-5 px-6 sm:px-10 min-h-[44px]"
+            className="w-full sm:w-auto text-xs sm:text-sm uppercase tracking-widest py-3.5 sm:py-5 px-6 sm:px-10 min-h-[44px]"
           >
             Explore Experience
           </Button>
@@ -158,30 +158,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-5 pt-4 sm:pt-10 text-left"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5 pt-4 sm:pt-10 text-left"
         >
-          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-md sm:shadow-lg shadow-slate-200/50 hover:border-brand-navy transition-all hover:-translate-y-1">
-            <div className="text-base sm:text-xl font-black font-display text-brand-navy">KARACHI & IU</div>
-            <div className="text-[11px] sm:text-xs text-brand-orange font-bold font-mono mt-1">PHYSICAL PITCHING</div>
-            <div className="text-xs text-slate-500 mt-1">Live presentation at Iqra University</div>
+          <div className="p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-sm sm:shadow-lg shadow-slate-200/50 hover:border-brand-navy transition-all hover:-translate-y-1">
+            <div className="text-xs xs:text-sm sm:text-xl font-black font-display text-brand-navy truncate">KARACHI & IU</div>
+            <div className="text-[9px] xs:text-[10px] sm:text-xs text-brand-orange font-bold font-mono mt-0.5 sm:mt-1 truncate">PHYSICAL PITCHING</div>
+            <div className="text-[10px] xs:text-xs text-slate-500 mt-1 leading-snug">Live at Iqra University</div>
           </div>
 
-          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-md sm:shadow-lg shadow-slate-200/50 hover:border-brand-orange transition-all hover:-translate-y-1">
-            <div className="text-base sm:text-xl font-black font-display text-brand-navy">SINDH CITIES</div>
-            <div className="text-[11px] sm:text-xs text-brand-navy font-bold font-mono mt-1">VIRTUAL PITCHING</div>
-            <div className="text-xs text-slate-500 mt-1">Live online pitch presentation rooms</div>
+          <div className="p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-sm sm:shadow-lg shadow-slate-200/50 hover:border-brand-orange transition-all hover:-translate-y-1">
+            <div className="text-xs xs:text-sm sm:text-xl font-black font-display text-brand-navy truncate">SINDH CITIES</div>
+            <div className="text-[9px] xs:text-[10px] sm:text-xs text-brand-navy font-bold font-mono mt-0.5 sm:mt-1 truncate">VIRTUAL PITCHING</div>
+            <div className="text-[10px] xs:text-xs text-slate-500 mt-1 leading-snug">Live online pitch rooms</div>
           </div>
 
-          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-md sm:shadow-lg shadow-slate-200/50 hover:border-brand-navy transition-all hover:-translate-y-1">
-            <div className="text-base sm:text-xl font-black font-display text-brand-navy">MARQUEE</div>
-            <div className="text-[11px] sm:text-xs text-brand-orange font-bold font-mono mt-1">STARTUP SHOWCASE</div>
-            <div className="text-xs text-slate-500 mt-1">Spectrum 2.0 Main Marquee</div>
+          <div className="p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-sm sm:shadow-lg shadow-slate-200/50 hover:border-brand-navy transition-all hover:-translate-y-1">
+            <div className="text-xs xs:text-sm sm:text-xl font-black font-display text-brand-navy truncate">MARQUEE</div>
+            <div className="text-[9px] xs:text-[10px] sm:text-xs text-brand-orange font-bold font-mono mt-0.5 sm:mt-1 truncate">STARTUP SHOWCASE</div>
+            <div className="text-[10px] xs:text-xs text-slate-500 mt-1 leading-snug">Spectrum 2.0 Marquee</div>
           </div>
 
-          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-md sm:shadow-lg shadow-slate-200/50 hover:border-emerald-500 transition-all hover:-translate-y-1">
-            <div className="text-base sm:text-xl font-black font-display text-brand-navy">RECOGNITION</div>
-            <div className="text-[11px] sm:text-xs text-emerald-600 font-bold font-mono mt-1">AWARDS & TROPHIES</div>
-            <div className="text-xs text-slate-500 mt-1">Official Society & Spectrum Endorsement</div>
+          <div className="p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-sm sm:shadow-lg shadow-slate-200/50 hover:border-emerald-500 transition-all hover:-translate-y-1">
+            <div className="text-xs xs:text-sm sm:text-xl font-black font-display text-brand-navy truncate">RECOGNITION</div>
+            <div className="text-[9px] xs:text-[10px] sm:text-xs text-emerald-600 font-bold font-mono mt-0.5 sm:mt-1 truncate">AWARDS & TROPHIES</div>
+            <div className="text-[10px] xs:text-xs text-slate-500 mt-1 leading-snug">Official Endorsement</div>
           </div>
         </motion.div>
       </div>

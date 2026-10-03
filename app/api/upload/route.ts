@@ -23,15 +23,21 @@ export async function POST(request: Request) {
     const uniqueSuffix = `${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
     const filename = `${cleanBase}_${uniqueSuffix}${ext}`;
 
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
+    let publicUrl = '';
+    try {
+      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+      }
+      const filePath = path.join(uploadDir, filename);
+      fs.writeFileSync(filePath, buffer);
+      publicUrl = `/uploads/${filename}`;
+    } catch (fsErr) {
+      console.warn('Filesystem write not available (serverless read-only), falling back to Data URL:', fsErr);
+      const mimeType = file.type || 'image/png';
+      const base64 = buffer.toString('base64');
+      publicUrl = `data:${mimeType};base64,${base64}`;
     }
-
-    const filePath = path.join(uploadDir, filename);
-    fs.writeFileSync(filePath, buffer);
-
-    const publicUrl = `/uploads/${filename}`;
 
     return NextResponse.json({
       success: true,

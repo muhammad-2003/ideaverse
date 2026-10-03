@@ -23,7 +23,7 @@ export const ConversionCTASection: React.FC<ConversionCTASectionProps> = ({ onOp
           {eventConfig.applicationsOpen ? 'Applications Officially Open' : 'Coming Soon'}
         </Badge>
 
-        <h2 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-display tracking-tight text-white leading-[0.95] uppercase">
+        <h2 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display tracking-tight text-white leading-tight uppercase px-2">
           YOUR IDEA
           <br />
           <span className="text-amber-300 drop-shadow-md">
@@ -31,7 +31,7 @@ export const ConversionCTASection: React.FC<ConversionCTASectionProps> = ({ onOp
           </span>
         </h2>
 
-        <p className="max-w-xl mx-auto text-sm sm:text-lg md:text-xl text-slate-100 font-medium px-2">
+        <p className="max-w-xl mx-auto text-xs xs:text-sm sm:text-base md:text-lg text-slate-100 font-medium px-4 leading-relaxed">
           Take the first step today. Create your IdeaVerse profile in less than 2 minutes and submit your official application for Spectrum 2.0.
         </p>
 

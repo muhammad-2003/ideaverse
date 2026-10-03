@@ -6,13 +6,18 @@ import { SiteContent } from '@/types/content';
 
 const CONTENT_FILE_PATH = path.join(process.cwd(), '.site_content.json');
 
+let memoryContent: SiteContent | null = null;
+
 function readSiteContent(): SiteContent {
+  if (memoryContent) {
+    return memoryContent;
+  }
+
   try {
     if (fs.existsSync(CONTENT_FILE_PATH)) {
       const data = fs.readFileSync(CONTENT_FILE_PATH, 'utf-8');
       const parsed = JSON.parse(data);
-      // Merge with defaults in case new fields were added
-      return {
+      const merged = {
         ...defaultSiteContent,
         ...parsed,
         previousEdition: Array.isArray(parsed.previousEdition)
@@ -26,12 +31,14 @@ function readSiteContent(): SiteContent {
           : defaultSiteContent.featuredStartups,
         faqs: Array.isArray(parsed.faqs) ? parsed.faqs : defaultSiteContent.faqs,
       };
+      memoryContent = merged;
+      return merged;
     }
   } catch (err) {
     console.error('Error reading site content file:', err);
   }
 
-  // Initialize file if not found
+  // Initialize file if not found and writable
   try {
     fs.writeFileSync(
       CONTENT_FILE_PATH,
@@ -39,18 +46,19 @@ function readSiteContent(): SiteContent {
       'utf-8'
     );
   } catch (err) {
-    console.error('Error initializing site content file:', err);
+    // Non-fatal if filesystem is read-only
   }
 
+  memoryContent = defaultSiteContent;
   return defaultSiteContent;
 }
 
 function saveSiteContent(content: SiteContent) {
+  memoryContent = content;
   try {
     fs.writeFileSync(CONTENT_FILE_PATH, JSON.stringify(content, null, 2), 'utf-8');
   } catch (err) {
-    console.error('Error writing site content file:', err);
-    throw new Error('Failed to save content to disk');
+    console.warn('Filesystem write not permitted (serverless read-only), saved to memory store:', err);
   }
 }
 
