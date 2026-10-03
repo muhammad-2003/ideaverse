@@ -23,6 +23,14 @@ export const metadata: Metadata = {
     'Pitching Competition',
     'Startup Showcase',
   ],
+  icons: {
+    icon: [
+      { url: '/images/ideaverse_20_logo.png', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/images/ideaverse_20_logo.png',
+    apple: '/images/ideaverse_20_logo.png',
+  },
   openGraph: {
     title: 'IdeaVerse 2.0 | Startup Pitching & Showcase Competition',
     description:
@@ -48,6 +56,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/images/ideaverse_20_logo.png" type="image/png" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/ideaverse_20_logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

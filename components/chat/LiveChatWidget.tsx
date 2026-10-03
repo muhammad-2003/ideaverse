@@ -317,8 +317,8 @@ export function LiveChatWidget() {
           className="group relative flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-gradient-to-r from-brand-navy via-brand-navyDark to-brand-orange text-white shadow-2xl hover:shadow-brand-orange/40 hover:scale-105 active:scale-95 transition-all duration-200 border border-white/20"
           aria-label="Toggle Live Chat"
         >
-          <div className="relative">
-            <MessageSquare className="w-5 h-5 text-white" />
+          <div className="relative w-5 h-5 flex items-center justify-center shrink-0">
+            <img src="/images/ideaverse_20_logo.png" alt="IdeaVerse" className="w-full h-full object-contain" />
             {unreadBadge > 0 && (
               <span className="absolute -top-2 -right-2 w-5 h-5 bg-rose-500 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-white animate-pulse">
                 {unreadBadge}
@@ -348,8 +348,8 @@ export function LiveChatWidget() {
               </button>
 
               <div className="relative shrink-0">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-orange font-black">
-                  <Bot className="w-5 h-5 text-brand-orange" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center p-1.5 overflow-hidden">
+                  <img src="/images/ideaverse_20_logo.png" alt="IdeaVerse 2.0" className="w-full h-full object-contain" />
                 </div>
                 <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-brand-navy rounded-full" />
               </div>
