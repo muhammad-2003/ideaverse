@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           </p>
         </div>
 
-        <Card className="p-8 space-y-6 bg-surface/80">
+        <Card className="p-5 sm:p-8 space-y-6 bg-surface/80">
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-white">1. Collection of Application Data</h2>
             <p className="text-xs text-slate-300 leading-relaxed">

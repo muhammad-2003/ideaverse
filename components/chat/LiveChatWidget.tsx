@@ -288,10 +288,10 @@ export function LiveChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end max-w-[calc(100vw-1rem)]">
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-[360px] sm:w-[400px] h-[550px] max-h-[85vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden mb-3 animate-in fade-in zoom-in-95 duration-200">
+        <div className="w-[calc(100vw-1.5rem)] xs:w-[350px] sm:w-[390px] h-[520px] sm:h-[550px] max-h-[82vh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden mb-2 sm:mb-3 animate-in fade-in zoom-in-95 duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-brand-navy via-brand-navyDark to-[#0F3657] text-white p-4 flex items-center justify-between shadow-md relative shrink-0">
             <div className="flex items-center gap-3">

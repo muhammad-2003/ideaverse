@@ -212,28 +212,28 @@ export default function ApplyPage() {
       </header>
 
       {/* Main Content Container */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 space-y-8">
+      <div className="max-w-3xl mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-14 space-y-6 sm:space-y-8">
         {/* Page Title & Subtitle */}
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-2 sm:space-y-3">
           <Badge variant="orange" size="md">
             Official Application Portal
           </Badge>
 
-          <h1 className="text-3xl sm:text-5xl font-black font-display text-brand-navy tracking-tight uppercase">
+          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-display text-brand-navy tracking-tight uppercase">
             APPLY FOR{' '}
             <span className="bg-gradient-to-r from-brand-blue via-brand-purple to-brand-orange bg-clip-text text-transparent">
               IDEAVERSE 2.0.
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-600 font-medium max-w-xl mx-auto">
+          <p className="text-xs sm:text-base text-slate-600 font-medium max-w-xl mx-auto px-2">
             Submit your startup profile to enter Sindh&apos;s premier pitching & showcase competition under Spectrum 2.0.
           </p>
         </div>
 
         {/* Application Form Card */}
-        <Card className="p-6 sm:p-10 bg-white border-slate-200 shadow-2xl space-y-8 text-left">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+        <Card className="p-4 sm:p-8 md:p-10 bg-white border-slate-200 shadow-2xl space-y-6 sm:space-y-8 text-left">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
             {submitError && (
               <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm flex items-center gap-3">
                 <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-600" />

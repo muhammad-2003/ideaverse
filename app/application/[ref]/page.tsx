@@ -103,8 +103,8 @@ export default function ApplicationStatusPage() {
   const posterData = mapLeadToPosterData(lead);
 
   return (
-    <main className="min-h-screen bg-background text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <main className="min-h-screen bg-background text-slate-100 py-8 sm:py-12 px-3 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
         {/* Top Header */}
         <div className="flex items-center justify-between">
           <Link href="/" className="inline-flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors">
@@ -122,7 +122,7 @@ export default function ApplicationStatusPage() {
         </div>
 
         {/* Application Banner */}
-        <Card className="p-8 space-y-6 bg-surface/90 border-brand-cyan/30">
+        <Card className="p-4 sm:p-8 space-y-5 sm:space-y-6 bg-surface/90 border-brand-cyan/30">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
             <div>
               <div className="flex items-center gap-2 mb-1">

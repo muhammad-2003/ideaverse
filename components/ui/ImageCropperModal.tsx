@@ -88,17 +88,38 @@ export function ImageCropperModal({
     img.src = imageSrc;
   }, [imageSrc]);
 
-  // Viewport & crop box sizing
-  const viewportWidth = 520;
-  const viewportHeight = 360;
+  // Responsive Viewport & crop box sizing
+  const [viewportWidth, setViewportWidth] = useState<number>(500);
+  const [viewportHeight, setViewportHeight] = useState<number>(340);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        const measured = containerRef.current.clientWidth;
+        if (measured > 0) {
+          setViewportWidth(measured);
+          setViewportHeight(measured < 480 ? 270 : 340);
+        }
+      }
+    };
+    if (isOpen) {
+      // Small timeout for modal animation to settle layout
+      const timer = setTimeout(updateDimensions, 50);
+      window.addEventListener('resize', updateDimensions);
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', updateDimensions);
+      };
+    }
+  }, [isOpen]);
 
   const targetRatio = RATIO_MAP[aspectRatio] || (naturalSize.width && naturalSize.height ? naturalSize.width / naturalSize.height : 16 / 9);
 
-  let cropWidth = viewportWidth - 40;
+  let cropWidth = Math.max(160, viewportWidth - (viewportWidth < 480 ? 24 : 40));
   let cropHeight = cropWidth / targetRatio;
 
-  if (cropHeight > viewportHeight - 40) {
-    cropHeight = viewportHeight - 40;
+  if (cropHeight > viewportHeight - (viewportHeight < 320 ? 16 : 40)) {
+    cropHeight = Math.max(120, viewportHeight - (viewportHeight < 320 ? 16 : 40));
     cropWidth = cropHeight * targetRatio;
   }
 
@@ -124,6 +145,29 @@ export function ImageCropperModal({
   );
 
   const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Touch pan handlers for Mobile & iPad/Tablets
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      dragStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      panStartRef.current = { ...pan };
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - dragStartRef.current.x;
+    const dy = e.touches[0].clientY - dragStartRef.current.y;
+    setPan({
+      x: panStartRef.current.x + dx,
+      y: panStartRef.current.y + dy,
+    });
+  };
+
+  const handleTouchEnd = () => {
     setIsDragging(false);
   };
 
@@ -268,11 +312,11 @@ export function ImageCropperModal({
         </div>
 
         {/* Aspect Ratio Toolbar */}
-        <div className="px-5 py-2.5 bg-white border-b border-slate-100 flex items-center justify-between flex-wrap gap-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-            Aspect Ratio:
+        <div className="px-3 sm:px-5 py-2 sm:py-2.5 bg-white border-b border-slate-100 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 whitespace-nowrap">
+            Ratio:
           </span>
-          <div className="flex items-center gap-1.5 overflow-x-auto">
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
             {(['16:9', '4:3', '1:1', '3:2', 'free'] as AspectRatioOption[]).map((ratio) => (
               <button
                 key={ratio}
@@ -281,7 +325,7 @@ export function ImageCropperModal({
                   setAspectRatio(ratio);
                   setPan({ x: 0, y: 0 });
                 }}
-                className={`px-3 py-1 rounded-xl text-xs font-bold transition flex items-center gap-1 ${
+                className={`px-2.5 sm:px-3 py-1 rounded-xl text-[11px] sm:text-xs font-bold transition flex items-center gap-1 whitespace-nowrap ${
                   aspectRatio === ratio
                     ? 'bg-brand-navy text-white shadow-sm'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -309,8 +353,11 @@ export function ImageCropperModal({
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           onWheel={handleWheel}
-          className="relative bg-slate-950 flex items-center justify-center overflow-hidden select-none cursor-grab active:cursor-grabbing"
+          className="relative bg-slate-950 flex items-center justify-center overflow-hidden select-none cursor-grab active:cursor-grabbing touch-none"
           style={{ height: `${viewportHeight}px`, width: '100%' }}
         >
           {/* Background pattern */}

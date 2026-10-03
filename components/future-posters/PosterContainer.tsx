@@ -190,9 +190,9 @@ export const PosterContainer: React.FC<PosterContainerProps> = ({
   };
 
   return (
-    <Card className={`p-6 sm:p-8 text-center space-y-6 bg-white border-slate-200 shadow-2xl ${className}`}>
+    <Card className={`p-4 sm:p-8 text-center space-y-5 sm:space-y-6 bg-white border-slate-200 shadow-2xl ${className}`}>
       {/* Top Banner Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-200">
         <Badge variant="orange" size="md">
           Official Digital Poster Ready
         </Badge>
@@ -202,7 +202,7 @@ export const PosterContainer: React.FC<PosterContainerProps> = ({
       </div>
 
       {/* Poster Canvas Preview Container */}
-      <div className="relative mx-auto aspect-[934/1024] max-w-md rounded-3xl bg-slate-900 border-2 border-slate-200 overflow-hidden shadow-2xl group">
+      <div className="relative mx-auto aspect-[934/1024] max-w-md rounded-2xl sm:rounded-3xl bg-slate-900 border-2 border-slate-200 overflow-hidden shadow-2xl group">
         <canvas ref={canvasRef} className="w-full h-full object-contain" />
         {isRendering && (
           <div className="absolute inset-0 bg-slate-900/80 flex flex-col items-center justify-center gap-2 text-white">

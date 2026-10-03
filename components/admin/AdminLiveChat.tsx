@@ -79,6 +79,7 @@ function playAdminNotificationSound() {
 export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
   const [threads, setThreads] = useState<ChatThread[]>([]);
   const [selectedThreadId, setSelectedThreadId] = useState<string | null>(null);
+  const [mobileView, setMobileView] = useState<'list' | 'chat'>('list');
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -275,6 +276,7 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
         setDeleteConfirmId(null);
         if (selectedThreadId === threadId) {
           setSelectedThreadId(updated[0]?.id || null);
+          setMobileView('list');
         }
       }
     } catch (err) {
@@ -304,76 +306,76 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
   const resolvedInquiries = threads.filter((t) => t.status === 'resolved').length;
 
   return (
-    <div className="space-y-6">
-      {/* Top KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+    <div className="space-y-4 sm:space-y-6">
+      {/* Top KPI Cards - 2 cols on mobile, 4 cols on desktop */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+          <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500">
             Total Inquiries
           </div>
-          <div className="text-2xl font-black text-brand-navy mt-1 font-display">
+          <div className="text-xl sm:text-2xl font-black text-brand-navy mt-0.5 sm:mt-1 font-display">
             {totalInquiries}
           </div>
-          <div className="text-[11px] text-slate-400 mt-0.5">All time visitor queries</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">All time visitor queries</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-amber-600">
+        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+          <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-amber-600">
             Active / Open
           </div>
-          <div className="text-2xl font-black text-amber-600 mt-1 font-display">
+          <div className="text-xl sm:text-2xl font-black text-amber-600 mt-0.5 sm:mt-1 font-display">
             {openInquiries}
           </div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Awaiting organizer review</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">Awaiting organizer review</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-rose-600 flex items-center justify-between">
+        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+          <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-rose-600 flex items-center justify-between">
             <span>Needs Reply</span>
             {unreadInquiries > 0 && (
               <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
             )}
           </div>
-          <div className="text-2xl font-black text-rose-600 mt-1 font-display">
+          <div className="text-xl sm:text-2xl font-black text-rose-600 mt-0.5 sm:mt-1 font-display">
             {unreadInquiries}
           </div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Unread messages</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">Unread messages</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">
+        <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm">
+          <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-600">
             Resolved
           </div>
-          <div className="text-2xl font-black text-emerald-600 mt-1 font-display">
+          <div className="text-xl sm:text-2xl font-black text-emerald-600 mt-0.5 sm:mt-1 font-display">
             {resolvedInquiries}
           </div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Completed inquiries</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">Completed inquiries</div>
         </div>
       </div>
 
-      {/* Main Console Box */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[740px]">
+      {/* Main Console Box with Responsive Height */}
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[580px] xs:h-[620px] sm:h-[680px] lg:h-[740px] max-h-[85vh]">
         {/* Desk Toolbar */}
-        <div className="p-4 border-b border-slate-200 bg-slate-50/60 flex flex-wrap items-center justify-between gap-3">
+        <div className="p-3 sm:p-4 border-b border-slate-200 bg-slate-50/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 shrink-0">
           {/* Search bar & filter pills */}
-          <div className="flex flex-wrap items-center gap-2 flex-1">
-            <div className="relative min-w-[220px] max-w-sm">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 flex-1 min-w-0">
+            <div className="relative w-full sm:max-w-xs">
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search name, email, or query..."
+                placeholder="Search name, email, query..."
                 className="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 focus:border-brand-navy text-slate-800"
               />
             </div>
 
-            <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-0.5">
+            <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-0.5 overflow-x-auto no-scrollbar shrink-0">
               <button
                 onClick={() => setStatusFilter('all')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-bold transition whitespace-nowrap ${
                   statusFilter === 'all'
-                    ? 'bg-brand-navy text-white'
+                    ? 'bg-brand-navy text-white shadow-xs'
                     : 'text-slate-600 hover:text-brand-navy'
                 }`}
               >
@@ -381,9 +383,9 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
               </button>
               <button
                 onClick={() => setStatusFilter('open')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-bold transition whitespace-nowrap ${
                   statusFilter === 'open'
-                    ? 'bg-amber-600 text-white'
+                    ? 'bg-amber-600 text-white shadow-xs'
                     : 'text-slate-600 hover:text-amber-600'
                 }`}
               >
@@ -391,9 +393,9 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
               </button>
               <button
                 onClick={() => setStatusFilter('unread')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-bold transition whitespace-nowrap ${
                   statusFilter === 'unread'
-                    ? 'bg-rose-600 text-white'
+                    ? 'bg-rose-600 text-white shadow-xs'
                     : 'text-slate-600 hover:text-rose-600'
                 }`}
               >
@@ -401,9 +403,9 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
               </button>
               <button
                 onClick={() => setStatusFilter('resolved')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-bold transition whitespace-nowrap ${
                   statusFilter === 'resolved'
-                    ? 'bg-emerald-600 text-white'
+                    ? 'bg-emerald-600 text-white shadow-xs'
                     : 'text-slate-600 hover:text-emerald-600'
                 }`}
               >
@@ -413,11 +415,11 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
           </div>
 
           {/* Right Action buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-1.5 sm:gap-2 shrink-0">
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
-              title={soundEnabled ? 'Mute notification sound' : 'Unmute notification sound'}
-              className={`p-2 rounded-xl border text-xs font-bold transition flex items-center gap-1.5 ${
+              title={soundEnabled ? 'Mute sound alerts' : 'Unmute sound alerts'}
+              className={`p-1.5 sm:p-2 rounded-xl border text-xs font-bold transition flex items-center gap-1.5 ${
                 soundEnabled
                   ? 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                   : 'bg-slate-100 border-slate-300 text-slate-400'
@@ -429,21 +431,25 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
             <button
               onClick={() => fetchThreads(false)}
               disabled={isRefreshing}
-              className="p-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 text-xs font-bold transition flex items-center gap-1.5"
+              className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 text-xs font-bold transition flex items-center gap-1.5"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-brand-orange' : ''}`} />
-              <span className="hidden sm:inline">Refresh</span>
+              <span className="text-[11px] sm:text-xs">Refresh</span>
             </button>
           </div>
         </div>
 
-        {/* 2-Column Chat Layout */}
-        <div className="flex-1 flex overflow-hidden">
+        {/* 2-Column Chat Layout (Responsive Master-Detail on Mobile/Tablet) */}
+        <div className="flex-1 flex overflow-hidden relative">
           {/* LEFT COLUMN: Thread List */}
-          <div className="w-full sm:w-80 md:w-96 border-r border-slate-200 flex flex-col bg-slate-50/40 shrink-0">
-            <div className="p-3 border-b border-slate-100 bg-white/70 flex items-center justify-between text-xs text-slate-500 font-semibold">
-              <span>{filteredThreads.length} Conversations</span>
-              <span className="text-[11px] text-emerald-600 flex items-center gap-1">
+          <div
+            className={`w-full md:w-80 lg:w-96 border-r border-slate-200 flex-col bg-slate-50/40 shrink-0 ${
+              mobileView === 'list' ? 'flex' : 'hidden md:flex'
+            }`}
+          >
+            <div className="p-2.5 sm:p-3 border-b border-slate-100 bg-white/70 flex items-center justify-between text-xs text-slate-500 font-semibold shrink-0">
+              <span className="text-[11px] sm:text-xs font-bold">{filteredThreads.length} Inquiries</span>
+              <span className="text-[10px] sm:text-[11px] text-emerald-600 flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 Live Sync (4s)
               </span>
@@ -470,18 +476,19 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                       key={thread.id}
                       onClick={() => {
                         setSelectedThreadId(thread.id);
+                        setMobileView('chat');
                         if (thread.unreadAdminCount > 0) {
                           markThreadAsRead(thread.id);
                         }
                       }}
-                      className={`p-3.5 cursor-pointer transition-all relative flex items-start gap-3 ${
+                      className={`p-3 sm:p-3.5 cursor-pointer transition-all relative flex items-start gap-2.5 sm:gap-3 ${
                         isSelected
                           ? 'bg-brand-navy/5 border-l-4 border-brand-orange shadow-inner'
                           : 'hover:bg-slate-100/70 bg-white'
                       }`}
                     >
                       {/* Avatar */}
-                      <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-navy to-brand-navyDark text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm border border-brand-navy/10">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-brand-navy to-brand-navyDark text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm border border-brand-navy/10">
                         {initials || <User className="w-4 h-4" />}
                       </div>
 
@@ -503,11 +510,11 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                           {thread.userEmail}
                         </p>
 
-                        <p className="text-[11px] text-slate-600 truncate mt-1 font-medium">
+                        <p className="text-[11px] text-slate-600 truncate mt-0.5 font-medium">
                           {thread.lastMessage || 'No messages yet'}
                         </p>
 
-                        <div className="flex items-center gap-1.5 mt-2">
+                        <div className="flex items-center gap-1.5 mt-1.5">
                           <span
                             className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${
                               thread.status === 'open'
@@ -533,54 +540,72 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
           </div>
 
           {/* RIGHT COLUMN: Active Conversation & Reply Desk */}
-          <div className="flex-1 flex flex-col bg-white overflow-hidden">
+          <div
+            className={`w-full flex-1 flex-col bg-white overflow-hidden ${
+              mobileView === 'chat' ? 'flex' : 'hidden md:flex'
+            }`}
+          >
             {selectedThread ? (
               <>
-                {/* Thread Header */}
-                <div className="p-4 border-b border-slate-200 flex items-center justify-between gap-4 bg-slate-50/50 shrink-0">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-10 h-10 rounded-2xl bg-brand-orange/10 text-brand-orange border border-brand-orange/20 flex items-center justify-center font-bold text-sm shrink-0">
-                      <User className="w-5 h-5" />
+                {/* Thread Header with Mobile Back Button */}
+                <div className="p-3 sm:p-4 border-b border-slate-200 flex items-center justify-between gap-2 sm:gap-4 bg-slate-50/70 shrink-0">
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    {/* Mobile Back Button */}
+                    <button
+                      onClick={() => setMobileView('list')}
+                      className="md:hidden p-1.5 -ml-1 text-slate-600 hover:text-brand-navy hover:bg-slate-200/70 rounded-xl transition flex items-center gap-1 font-bold text-xs shrink-0"
+                      aria-label="Back to inquiries list"
+                      title="Back to inquiries list"
+                    >
+                      <RotateCcw className="w-4 h-4 text-brand-orange" />
+                      <span className="text-[11px] font-extrabold">All</span>
+                    </button>
+
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-2xl bg-brand-orange/10 text-brand-orange border border-brand-orange/20 flex items-center justify-center font-bold text-xs sm:text-sm shrink-0">
+                      <User className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
+
                     <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-bold text-brand-navy truncate">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <h3 className="text-xs sm:text-sm font-bold text-brand-navy truncate">
                           {selectedThread.userName}
                         </h3>
                         <Badge
                           variant={selectedThread.status === 'open' ? 'amber' : 'emerald'}
                           size="sm"
+                          className="scale-90 sm:scale-100 origin-left"
                         >
-                          {selectedThread.status === 'open' ? 'Open Query' : 'Resolved'}
+                          {selectedThread.status === 'open' ? 'Open' : 'Resolved'}
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-3 text-xs text-slate-500 mt-0.5">
+                      <div className="flex items-center gap-2 text-[10px] sm:text-xs text-slate-500 mt-0.5 truncate">
                         <a
                           href={`mailto:${selectedThread.userEmail}`}
-                          className="hover:text-brand-navy hover:underline flex items-center gap-1 text-[11px]"
+                          className="hover:text-brand-navy hover:underline flex items-center gap-1 truncate"
                         >
-                          <Mail className="w-3 h-3" />
-                          <span>{selectedThread.userEmail}</span>
+                          <Mail className="w-3 h-3 shrink-0" />
+                          <span className="truncate">{selectedThread.userEmail}</span>
                         </a>
-                        <span>•</span>
-                        <span className="text-[11px] text-slate-400">
-                          Started: {new Date(selectedThread.createdAt).toLocaleDateString()}
-                        </span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 shrink-0">
+                  <div className="flex items-center gap-1 sm:gap-2 shrink-0">
                     <button
                       onClick={() => handleToggleStatus(selectedThread.id, selectedThread.status)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition flex items-center gap-1.5 ${
+                      className={`px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold border transition flex items-center gap-1 sm:gap-1.5 ${
                         selectedThread.status === 'open'
                           ? 'bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100'
                           : 'bg-amber-50 border-amber-300 text-amber-700 hover:bg-amber-100'
                       }`}
                     >
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>{selectedThread.status === 'open' ? 'Mark Resolved' : 'Reopen Query'}</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                      <span className="hidden xs:inline">
+                        {selectedThread.status === 'open' ? 'Mark Resolved' : 'Reopen Query'}
+                      </span>
+                      <span className="xs:hidden">
+                        {selectedThread.status === 'open' ? 'Resolve' : 'Reopen'}
+                      </span>
                     </button>
 
                     <button
@@ -594,7 +619,7 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                 </div>
 
                 {/* Messages Feed */}
-                <div className="flex-1 p-5 overflow-y-auto space-y-4 bg-slate-50/30">
+                <div className="flex-1 p-3 sm:p-5 overflow-y-auto space-y-3 sm:space-y-4 bg-slate-50/30">
                   {selectedThread.messages.map((msg) => {
                     const isAdmin = msg.sender === 'admin';
                     return (
@@ -615,7 +640,7 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                           </span>
                         </div>
                         <div
-                          className={`max-w-[80%] rounded-2xl px-4 py-3 text-xs leading-relaxed shadow-sm break-words ${
+                          className={`max-w-[90%] sm:max-w-[80%] rounded-2xl px-3.5 sm:px-4 py-2 sm:py-3 text-xs leading-relaxed shadow-xs break-words ${
                             isAdmin
                               ? 'bg-brand-navy text-white rounded-tr-sm font-medium border border-brand-navyDark'
                               : 'bg-white text-slate-800 rounded-tl-sm border border-slate-200 shadow-slate-100'
@@ -629,17 +654,17 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                   <div ref={messagesEndRef} />
                 </div>
 
-                {/* Canned Quick Responses Bar */}
-                <div className="px-4 py-2 border-t border-slate-200 bg-slate-50 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+                {/* Canned Quick Responses Bar (Horizontal touch scroll) */}
+                <div className="px-3 sm:px-4 py-2 border-t border-slate-200 bg-slate-50 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider whitespace-nowrap mr-1">
-                    Quick Templates:
+                    Templates:
                   </span>
                   {CANNED_RESPONSES.map((item, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setReplyText(item.text)}
-                      className="whitespace-nowrap text-[11px] bg-white hover:bg-brand-orange/10 hover:border-brand-orange/40 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 font-medium transition active:scale-95 shadow-2xs"
+                      className="whitespace-nowrap text-[10px] sm:text-[11px] bg-white hover:bg-brand-orange/10 hover:border-brand-orange/40 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 font-medium transition active:scale-95 shadow-2xs"
                     >
                       {item.label}
                     </button>
@@ -649,7 +674,7 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                 {/* Reply Composer Box */}
                 <form
                   onSubmit={handleSendReply}
-                  className="p-4 border-t border-slate-200 bg-white flex flex-col gap-2 shrink-0"
+                  className="p-3 sm:p-4 border-t border-slate-200 bg-white flex flex-col gap-2 shrink-0"
                 >
                   <div className="relative">
                     <textarea
@@ -662,19 +687,19 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                           handleSendReply();
                         }
                       }}
-                      placeholder={`Reply to ${selectedThread.userName}... (Ctrl + Enter to send)`}
-                      className="w-full p-3 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-navy/30 focus:border-brand-navy text-slate-800 resize-none"
+                      placeholder={`Reply to ${selectedThread.userName}... (Ctrl+Enter)`}
+                      className="w-full p-2.5 sm:p-3 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-navy/30 focus:border-brand-navy text-slate-800 resize-none"
                     />
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] text-slate-400">
-                      Press <kbd className="px-1.5 py-0.5 rounded bg-slate-100 border text-[10px] font-mono">Ctrl + Enter</kbd> to send quickly
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[10px] sm:text-[11px] text-slate-400 hidden xs:inline">
+                      Press <kbd className="px-1.5 py-0.5 rounded bg-slate-100 border text-[10px] font-mono">Ctrl + Enter</kbd> to send
                     </span>
                     <button
                       type="submit"
                       disabled={!replyText.trim() || isSending}
-                      className="py-2 px-5 rounded-xl bg-gradient-to-r from-brand-navy to-brand-navyDark text-white text-xs font-bold hover:shadow-lg transition active:scale-95 disabled:opacity-40 flex items-center gap-2"
+                      className="w-full xs:w-auto py-2 px-5 rounded-xl bg-gradient-to-r from-brand-navy to-brand-navyDark text-white text-xs font-bold hover:shadow-lg transition active:scale-95 disabled:opacity-40 flex items-center justify-center gap-2"
                     >
                       {isSending ? (
                         <span className="inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -689,10 +714,10 @@ export function AdminLiveChat({ onUnreadChange }: AdminLiveChatProps) {
                 </form>
               </>
             ) : (
-              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center text-slate-400">
-                <MessageSquare className="w-12 h-12 text-slate-300 mb-3" />
-                <h4 className="text-sm font-bold text-slate-700">No Conversation Selected</h4>
-                <p className="text-xs text-slate-400 max-w-sm mt-1">
+              <div className="flex-1 flex flex-col items-center justify-center p-6 text-center text-slate-400">
+                <MessageSquare className="w-10 h-10 sm:w-12 sm:h-12 text-slate-300 mb-2 sm:mb-3" />
+                <h4 className="text-xs sm:text-sm font-bold text-slate-700">No Conversation Selected</h4>
+                <p className="text-[11px] sm:text-xs text-slate-400 max-w-sm mt-1">
                   Choose an inquiry from the left panel to review questions and dispatch live answers.
                 </p>
               </div>

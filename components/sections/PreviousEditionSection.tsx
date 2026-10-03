@@ -23,27 +23,27 @@ export const PreviousEditionSection: React.FC = () => {
   const highlights = content.previousEdition;
 
   return (
-    <section id="previous-edition" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-slate-50 border-y border-slate-200">
-      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
+    <section id="previous-edition" className="py-16 sm:py-24 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-slate-50 border-y border-slate-200">
+      <div className="max-w-7xl mx-auto space-y-10 sm:space-y-16 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
           <Badge variant="orange" size="md">
             Proof of Impact
           </Badge>
-          <h2 className="text-4xl sm:text-6xl font-black font-display text-brand-darkText tracking-tight">
+          <h2 className="text-3xl xs:text-4xl sm:text-6xl font-black font-display text-brand-darkText tracking-tight">
             THIS WAS{' '}
             <span className="bg-gradient-to-r from-brand-blue via-brand-purple to-brand-orange bg-clip-text text-transparent">
               IDEAVERSE.
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-600">
+          <p className="text-sm sm:text-base md:text-lg text-slate-600 px-2">
             Ideas were pitched. Founders were discovered. Connections were made.{' '}
             <strong className="text-brand-blue">Now it&apos;s your turn.</strong>
           </p>
         </div>
 
         {/* Dynamic Editorial Photo & Narrative Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
           {highlights.map((item, idx) => {
             const IconComponent = (item.icon && iconMap[item.icon]) ? iconMap[item.icon] : Sparkles;
             const gradient = item.gradient || 'from-brand-blue to-brand-purple';
@@ -56,7 +56,7 @@ export const PreviousEditionSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.15 }}
               >
-                <Card className="group overflow-hidden p-0 h-[380px] flex flex-col justify-end relative border-slate-200 hover:border-brand-blue shadow-xl">
+                <Card className="group overflow-hidden p-0 h-[320px] sm:h-[380px] flex flex-col justify-end relative border-slate-200 hover:border-brand-blue shadow-xl">
                   {/* Background Image with Crisp Overlay */}
                   <div className="absolute inset-0 z-0">
                     <img
@@ -68,17 +68,17 @@ export const PreviousEditionSection: React.FC = () => {
                   </div>
 
                   {/* Content Overlay */}
-                  <div className="relative z-10 p-8 space-y-3">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${gradient} p-0.5 shadow-lg`}>
+                  <div className="relative z-10 p-5 sm:p-8 space-y-2.5 sm:space-y-3">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br ${gradient} p-0.5 shadow-lg`}>
                       <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
-                        <IconComponent className="w-6 h-6 text-brand-blue" />
+                        <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-brand-blue" />
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-black font-display text-white group-hover:text-brand-cyan transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-black font-display text-white group-hover:text-brand-cyan transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-slate-200 leading-relaxed max-w-md">
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-md">
                       {item.subtitle}
                     </p>
                   </div>

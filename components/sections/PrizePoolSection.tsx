@@ -14,22 +14,22 @@ export const PrizePoolSection: React.FC = () => {
   const isTba = prizeData.status === 'tba';
 
   return (
-    <section id="prizes" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="prizes" className="py-16 sm:py-24 px-3 sm:px-6 lg:px-8 relative bg-white border-b border-slate-200">
+      <div className="max-w-7xl mx-auto space-y-10 sm:space-y-16">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
           <div className="flex items-center justify-center gap-2">
             <Badge variant="orange" size="md">
               {prizeData.statusBadge || (isTba ? 'Sponsorship in Progress' : 'Confirmed Prize Pool')}
             </Badge>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-black font-display text-brand-darkText tracking-tight uppercase">
+          <h2 className="text-3xl xs:text-4xl sm:text-6xl font-black font-display text-brand-darkText tracking-tight uppercase">
             {prizeData.headline || 'PRIZE POOL & SPONSOR AWARDS'}
           </h2>
 
           {/* Official Sponsor & Prize Pool Note */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-slate-50 via-brand-navy/5 to-slate-50 border border-slate-200/80 shadow-inner max-w-2xl mx-auto text-center">
+          <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-slate-50 via-brand-navy/5 to-slate-50 border border-slate-200/80 shadow-inner max-w-2xl mx-auto text-center">
             <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
               {prizeData.note}
             </p>
@@ -37,7 +37,7 @@ export const PrizePoolSection: React.FC = () => {
         </div>
 
         {/* Prize Pool Blocks Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {prizeData.blocks.map((block, idx) => {
             const isFirst = idx === 0;
             return (

@@ -392,13 +392,13 @@ export default function AdminPage() {
     <div className="min-h-screen bg-slate-50 pb-24 text-left">
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-wrap items-center justify-between gap-2.5 sm:gap-4">
+          <div className="flex items-center gap-2.5 sm:gap-3">
             <Link href="/" target="_blank" title="Open Public Website">
               <img
                 src="/images/ideaverse_20_logo.png"
                 alt="IdeaVerse 2.0"
-                className="h-9 w-auto object-contain hover:opacity-85 transition-opacity"
+                className="h-8 sm:h-9 w-auto object-contain hover:opacity-85 transition-opacity"
               />
             </Link>
             <span className="h-6 w-px bg-slate-200 hidden sm:inline-block" />
@@ -407,11 +407,11 @@ export default function AdminPage() {
             </Badge>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/"
               target="_blank"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:text-brand-navy hover:bg-slate-50 transition-colors"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:text-brand-navy hover:bg-slate-50 transition-colors"
             >
               <span>View Public Site</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -425,9 +425,9 @@ export default function AdminPage() {
               variant="secondary"
               size="sm"
               icon={RefreshCw}
-              className={`text-xs ${isLoading || isContentLoading ? 'animate-spin' : ''}`}
+              className={`text-xs px-2.5 sm:px-3 ${isLoading || isContentLoading ? 'animate-spin' : ''}`}
             >
-              Refresh
+              <span className="hidden xs:inline">Refresh</span>
             </Button>
 
             {activeTab === 'leads' && (
@@ -436,47 +436,47 @@ export default function AdminPage() {
                 variant="primary"
                 size="sm"
                 icon={Download}
-                className="text-xs uppercase tracking-wider"
+                className="text-xs uppercase tracking-wider px-2.5 sm:px-3"
                 disabled={leads.length === 0}
               >
-                Export CSV
+                <span className="hidden xs:inline">Export </span>CSV
               </Button>
             )}
 
             <button
               onClick={handleLogout}
-              className="p-2 text-slate-500 hover:text-red-600 hover:bg-slate-100 rounded-xl transition-colors"
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-red-600 hover:bg-slate-100 rounded-xl transition-colors"
               title="Logout"
             >
-              <LogOut className="w-5 h-5" />
+              <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
 
         {/* Global Navigation Tabs */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 overflow-x-auto border-t border-slate-100 pt-2 pb-2">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar border-t border-slate-100 py-2">
           <button
             onClick={() => setActiveTab('leads')}
-            className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap ${
               activeTab === 'leads'
                 ? 'bg-brand-navy text-white shadow-sm'
                 : 'text-slate-600 hover:text-brand-navy hover:bg-slate-100'
             }`}
           >
             <Table className="w-3.5 h-3.5" />
-            <span>Applications & Leads ({leads.length})</span>
+            <span>Applications ({leads.length})</span>
           </button>
 
           <button
             onClick={() => setActiveTab('chat')}
-            className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap relative ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap relative ${
               activeTab === 'chat'
                 ? 'bg-brand-navy text-white shadow-sm'
                 : 'text-slate-600 hover:text-brand-navy hover:bg-slate-100'
             }`}
           >
             <MessageSquare className="w-3.5 h-3.5" />
-            <span>Live Chat Queries</span>
+            <span>Live Queries</span>
             {chatUnreadCount > 0 && (
               <span className="px-1.5 py-0.5 rounded-full bg-rose-600 text-white text-[10px] font-black animate-pulse">
                 {chatUnreadCount} New
@@ -486,43 +486,43 @@ export default function AdminPage() {
 
           <button
             onClick={() => setActiveTab('highlights')}
-            className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap ${
               activeTab === 'highlights'
                 ? 'bg-brand-navy text-white shadow-sm'
                 : 'text-slate-600 hover:text-brand-navy hover:bg-slate-100'
             }`}
           >
             <Camera className="w-3.5 h-3.5" />
-            <span>&quot;This Was IdeaVerse&quot; Photos</span>
+            <span>Photos &amp; Highlights</span>
           </button>
 
           <button
             onClick={() => setActiveTab('prizes')}
-            className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap ${
               activeTab === 'prizes'
                 ? 'bg-brand-navy text-white shadow-sm'
                 : 'text-slate-600 hover:text-brand-navy hover:bg-slate-100'
             }`}
           >
             <Trophy className="w-3.5 h-3.5" />
-            <span>Prize Pool & Sponsors</span>
+            <span>Prizes &amp; Sponsors</span>
           </button>
 
           <button
             onClick={() => setActiveTab('startups')}
-            className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap ${
               activeTab === 'startups'
                 ? 'bg-brand-navy text-white shadow-sm'
                 : 'text-slate-600 hover:text-brand-navy hover:bg-slate-100'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
-            <span>Next Wave Startups Wall</span>
+            <span>Startups Wall</span>
           </button>
 
           <button
             onClick={() => setActiveTab('faqs')}
-            className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 whitespace-nowrap ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap ${
               activeTab === 'faqs'
                 ? 'bg-brand-navy text-white shadow-sm'
                 : 'text-slate-600 hover:text-brand-navy hover:bg-slate-100'
@@ -543,146 +543,148 @@ export default function AdminPage() {
       )}
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-8 space-y-6 sm:space-y-8">
         {/* ========================================================================= */}
         {/* TAB 1: APPLICATIONS & LEADS                                               */}
         {/* ========================================================================= */}
         {activeTab === 'leads' && (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* KPI Metrics Dashboard Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-md space-y-2">
-                <div className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-widest">
+            <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2.5 sm:gap-4">
+              <div className="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1 sm:space-y-2">
+                <div className="text-[10px] sm:text-[11px] font-mono font-bold text-slate-400 uppercase tracking-widest truncate">
                   Total Applicants
                 </div>
-                <div className="text-3xl font-black font-display text-brand-navy">
+                <div className="text-2xl sm:text-3xl font-black font-display text-brand-navy">
                   {totalLeads}
                 </div>
-                <div className="text-xs text-slate-500 font-medium">
-                  Registered IdeaVerse profiles
+                <div className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
+                  Registered profiles
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-md space-y-2 border-l-4 border-l-brand-orange">
-                <div className="text-[11px] font-mono font-bold text-brand-orange uppercase tracking-widest">
+              <div className="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1 sm:space-y-2 border-l-4 border-l-brand-orange">
+                <div className="text-[10px] sm:text-[11px] font-mono font-bold text-brand-orange uppercase tracking-widest truncate">
                   Google Form Clicks
                 </div>
-                <div className="text-3xl font-black font-display text-brand-orange">
+                <div className="text-2xl sm:text-3xl font-black font-display text-brand-orange">
                   {totalGoogleFormClicks}
                 </div>
-                <div className="text-xs text-slate-500 font-medium">
-                  Clicked official Google Form link
+                <div className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
+                  Form link opened
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-md space-y-2 border-l-4 border-l-emerald-500">
-                <div className="text-[11px] font-mono font-bold text-emerald-600 uppercase tracking-widest">
+              <div className="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1 sm:space-y-2 border-l-4 border-l-emerald-500">
+                <div className="text-[10px] sm:text-[11px] font-mono font-bold text-emerald-600 uppercase tracking-widest truncate">
                   Applied (Yes)
                 </div>
-                <div className="text-3xl font-black font-display text-emerald-600">
+                <div className="text-2xl sm:text-3xl font-black font-display text-emerald-600">
                   {appliedYesCount}
                 </div>
-                <div className="text-xs text-slate-500 font-medium">
-                  Answered Yes to applied on link
+                <div className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
+                  Answered Yes to form
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-md space-y-2 border-l-4 border-l-brand-blue">
-                <div className="text-[11px] font-mono font-bold text-brand-blue uppercase tracking-widest">
+              <div className="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1 sm:space-y-2 border-l-4 border-l-brand-blue">
+                <div className="text-[10px] sm:text-[11px] font-mono font-bold text-brand-blue uppercase tracking-widest truncate">
                   Iqra University
                 </div>
-                <div className="text-3xl font-black font-display text-brand-blue">
+                <div className="text-2xl sm:text-3xl font-black font-display text-brand-blue">
                   {iqraCount}
                 </div>
-                <div className="text-xs text-slate-500 font-medium">
-                  Internal student startups
+                <div className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
+                  Internal startups
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-md space-y-2 border-l-4 border-l-brand-purple">
-                <div className="text-[11px] font-mono font-bold text-brand-purple uppercase tracking-widest">
+              <div className="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1 sm:space-y-2 border-l-4 border-l-brand-purple">
+                <div className="text-[10px] sm:text-[11px] font-mono font-bold text-brand-purple uppercase tracking-widest truncate">
                   Sindh Regional
                 </div>
-                <div className="text-3xl font-black font-display text-brand-purple">
+                <div className="text-2xl sm:text-3xl font-black font-display text-brand-purple">
                   {regionalCount}
                 </div>
-                <div className="text-xs text-slate-500 font-medium">
-                  Outside Karachi (Virtual Pitch)
+                <div className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
+                  Outside Karachi
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-md space-y-2 border-l-4 border-l-cyan-500">
-                <div className="text-[11px] font-mono font-bold text-cyan-600 uppercase tracking-widest">
+              <div className="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1 sm:space-y-2 border-l-4 border-l-cyan-500">
+                <div className="text-[10px] sm:text-[11px] font-mono font-bold text-cyan-600 uppercase tracking-widest truncate">
                   Media Consent
                 </div>
-                <div className="text-3xl font-black font-display text-cyan-600">
+                <div className="text-2xl sm:text-3xl font-black font-display text-cyan-600">
                   {promoConsentCount}
                 </div>
-                <div className="text-xs text-slate-500 font-medium">
-                  Showcase wall & poster consent
+                <div className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
+                  Showcase consent
                 </div>
               </div>
             </div>
 
             {/* Toolbar: Search & Filters */}
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-md flex flex-wrap items-center justify-between gap-4">
-              <div className="relative flex-1 min-w-[240px]">
+            <div className="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="relative flex-1 min-w-[200px]">
                 <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-slate-400" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search by startup name, lead name, email, institution, or reference..."
+                  placeholder="Search by startup, lead, email, institution, or ref..."
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-brand-navy focus:bg-white transition-colors"
                 />
               </div>
 
-              <div className="flex items-center gap-2 overflow-x-auto py-1">
-                <button
-                  onClick={() => setStatusFilter('all')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
-                    statusFilter === 'all'
-                      ? 'bg-brand-navy text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  All ({leads.length})
-                </button>
-                <button
-                  onClick={() => setStatusFilter('application_started')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
-                    statusFilter === 'application_started'
-                      ? 'bg-amber-500 text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  Started
-                </button>
-                <button
-                  onClick={() => setStatusFilter('application_self_reported')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
-                    statusFilter === 'application_self_reported'
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  Self-Reported
-                </button>
-              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+                  <button
+                    onClick={() => setStatusFilter('all')}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
+                      statusFilter === 'all'
+                        ? 'bg-brand-navy text-white'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    All ({leads.length})
+                  </button>
+                  <button
+                    onClick={() => setStatusFilter('application_started')}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
+                      statusFilter === 'application_started'
+                        ? 'bg-amber-500 text-white'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    Started
+                  </button>
+                  <button
+                    onClick={() => setStatusFilter('application_self_reported')}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
+                      statusFilter === 'application_self_reported'
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    Self-Reported
+                  </button>
+                </div>
 
-              <select
-                value={cityFilter}
-                onChange={(e) => setCityFilter(e.target.value)}
-                className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 font-bold focus:outline-none focus:border-brand-navy"
-              >
-                <option value="all">All Cities</option>
-                <option value="karachi">Karachi Only</option>
-                <option value="regional">Regional Sindh (Non-Karachi)</option>
-              </select>
+                <select
+                  value={cityFilter}
+                  onChange={(e) => setCityFilter(e.target.value)}
+                  className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 font-bold focus:outline-none focus:border-brand-navy"
+                >
+                  <option value="all">All Cities</option>
+                  <option value="karachi">Karachi Only</option>
+                  <option value="regional">Regional Sindh (Non-Karachi)</option>
+                </select>
+              </div>
             </div>
 
-            {/* Applications Data Table */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
+            {/* Desktop Applications Data Table (md and up) */}
+            <div className="hidden md:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
@@ -825,7 +827,7 @@ export default function AdminPage() {
                                 onClick={() => {
                                   setSelectedLead(lead);
                                   setIsDetailOpen(true);
-                                }}
+                                	}}
                                 className="p-1.5 rounded-lg text-slate-600 hover:text-brand-navy hover:bg-slate-100 transition-colors"
                                 title="View Details"
                               >
@@ -848,6 +850,130 @@ export default function AdminPage() {
                 </table>
               </div>
             </div>
+
+            {/* Mobile Cards List View (below md breakpoint) */}
+            <div className="md:hidden space-y-3">
+              {isLoading ? (
+                <div className="p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-500 font-medium text-xs">
+                  Loading applicant data...
+                </div>
+              ) : filteredLeads.length === 0 ? (
+                <div className="p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-500 font-medium text-xs">
+                  No matching applications found.
+                </div>
+              ) : (
+                filteredLeads.map((lead) => {
+                  const isOpened = lead.official_form_status === 'opened' || lead.official_link_clicked;
+                  const hasApplied = lead.applied_on_official_link === 'Yes';
+                  const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
+                  const waLink = cleanPhone ? `https://wa.me/${cleanPhone}` : null;
+
+                  return (
+                    <div
+                      key={lead.public_reference}
+                      className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3"
+                    >
+                      {/* Top Bar: Ref & Actions */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs font-black text-brand-navy bg-brand-navy/10 px-2 py-0.5 rounded-lg">
+                            {lead.public_reference}
+                          </span>
+                          <Badge
+                            variant={lead.lead_status === 'application_self_reported' ? 'emerald' : 'amber'}
+                            size="sm"
+                          >
+                            {lead.lead_status === 'application_self_reported' ? 'Self-Reported' : 'Started'}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => {
+                              setSelectedLead(lead);
+                              setIsDetailOpen(true);
+                            }}
+                            className="p-1.5 rounded-lg text-slate-600 hover:text-brand-navy hover:bg-slate-100 transition-colors"
+                            title="View Details"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => setDeleteConfirmRef(lead.public_reference)}
+                            className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                            title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Startup info */}
+                      <div className="flex items-center gap-3">
+                        {lead.startup_logo_url ? (
+                          <img
+                            src={lead.startup_logo_url}
+                            alt={lead.startup_name}
+                            className="w-10 h-10 rounded-xl object-contain bg-slate-50 p-1 border border-slate-200 shrink-0"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 rounded-xl bg-brand-navy/10 border border-brand-navy/20 flex items-center justify-center font-black text-brand-navy shrink-0">
+                            {lead.startup_name.charAt(0)}
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <div className="font-extrabold text-slate-900 text-sm truncate">
+                            {lead.startup_name}
+                          </div>
+                          <div className="text-xs text-slate-500 truncate">
+                            {lead.institution} • {lead.city}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Lead Contact Info */}
+                      <div className="pt-2 border-t border-slate-100 grid grid-cols-1 xs:grid-cols-2 gap-2 text-xs">
+                        <div>
+                          <span className="text-[10px] uppercase font-bold text-slate-400 block">Lead</span>
+                          <span className="font-bold text-slate-800">{lead.team_lead_name}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] uppercase font-bold text-slate-400 block">Contact</span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-slate-700">{lead.phone}</span>
+                            {waLink && (
+                              <a
+                                href={waLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-bold"
+                              >
+                                WA
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Status Badges */}
+                      <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] text-slate-500">Google Form:</span>
+                          <Badge variant={isOpened ? 'emerald' : 'slate'} size="sm">
+                            {isOpened ? 'Clicked' : 'Not Clicked'}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] text-slate-500">Applied:</span>
+                          <Badge variant={hasApplied ? 'emerald' : 'amber'} size="sm">
+                            {hasApplied ? 'Yes' : 'No'}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
           </div>
         )}
 
@@ -863,17 +989,17 @@ export default function AdminPage() {
         {/* ========================================================================= */}
         {activeTab === 'highlights' && (
           <div className="space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
               <div>
-                <h2 className="text-xl font-black font-display text-brand-navy">
+                <h2 className="text-lg sm:text-xl font-black font-display text-brand-navy">
                   &quot;This Was IdeaVerse&quot; Photos &amp; Highlights
                 </h2>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">
                   Replace pictures, update titles, or add new narrative cards for the public showcase section.
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
                   onClick={() => {
                     const newHighlight: PreviousEditionHighlight = {
@@ -1080,17 +1206,17 @@ export default function AdminPage() {
         {/* ========================================================================= */}
         {activeTab === 'prizes' && (
           <div className="space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
               <div>
-                <h2 className="text-xl font-black font-display text-brand-navy">
+                <h2 className="text-lg sm:text-xl font-black font-display text-brand-navy">
                   Prize Pool, Sponsor Notes &amp; Award Blocks
                 </h2>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">
                   Once sponsors are secured, update the official prize pool note and customize the prize amount blocks.
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
                   onClick={() => {
                     const newBlock: PrizeBlock = {
@@ -1342,17 +1468,17 @@ export default function AdminPage() {
         {/* ========================================================================= */}
         {activeTab === 'startups' && (
           <div className="space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
               <div>
-                <h2 className="text-xl font-black font-display text-brand-navy">
+                <h2 className="text-lg sm:text-xl font-black font-display text-brand-navy">
                   &quot;The Next Wave Is Already Building&quot; Showcase Wall
                 </h2>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">
                   Add, edit, or upload logos for startups displayed in the infinite marquee wall on the public homepage.
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
                   onClick={() => {
                     const newStartup: FeaturedStartup = {
@@ -1393,7 +1519,7 @@ export default function AdminPage() {
             </div>
 
             {/* Startups Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {content.featuredStartups.map((st, idx) => (
                 <Card key={st.id || idx} className="p-4 bg-white border-slate-200 shadow-md space-y-3 relative group">
                   <div className="flex items-center justify-between">
@@ -1517,17 +1643,17 @@ export default function AdminPage() {
         {/* ========================================================================= */}
         {activeTab === 'faqs' && (
           <div className="space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
               <div>
-                <h2 className="text-xl font-black font-display text-brand-navy">
+                <h2 className="text-lg sm:text-xl font-black font-display text-brand-navy">
                   Frequently Asked Questions (FAQ) Manager
                 </h2>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">
                   Add new questions and answers, or edit existing ones. Changes immediately update on the public FAQ accordion.
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
                   onClick={() => {
                     const newFaq: FAQItem = {
