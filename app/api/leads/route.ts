@@ -4,6 +4,9 @@ import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 import { IdeaVerseLead } from '@/types/lead';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
@@ -85,7 +88,10 @@ export async function GET(request: Request) {
     (a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
   );
 
-  return NextResponse.json({ success: true, leads });
+  return NextResponse.json(
+    { success: true, leads },
+    { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' } }
+  );
 }
 
 export async function POST(request: Request) {

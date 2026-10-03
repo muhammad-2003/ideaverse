@@ -9,6 +9,9 @@ import {
   deleteThread,
 } from '@/lib/chat/service';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -23,11 +26,17 @@ export async function GET(request: Request) {
       if (!thread) {
         return NextResponse.json({ success: false, error: 'Chat thread not found' }, { status: 404 });
       }
-      return NextResponse.json({ success: true, thread });
+      return NextResponse.json(
+        { success: true, thread },
+        { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' } }
+      );
     }
 
     const threads = getAllThreads();
-    return NextResponse.json({ success: true, threads });
+    return NextResponse.json(
+      { success: true, threads },
+      { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' } }
+    );
   } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error.message || 'Failed to fetch chat data' },
@@ -42,14 +51,14 @@ export async function POST(request: Request) {
     const action = body.action;
 
     if (action === 'start') {
-      const { userName, userEmail, initialMessage } = body;
+      const { userName, userEmail, userPhone, initialMessage } = body;
       if (!userName || !userEmail) {
         return NextResponse.json(
           { success: false, error: 'Name and email are required to start a chat.' },
           { status: 400 }
         );
       }
-      const thread = createOrGetThread({ userName, userEmail, initialMessage });
+      const thread = createOrGetThread({ userName, userEmail, userPhone, initialMessage });
       return NextResponse.json({ success: true, thread });
     }
 

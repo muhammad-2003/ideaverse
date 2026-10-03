@@ -8,6 +8,7 @@ import {
   Send,
   User,
   Mail,
+  Phone,
   Sparkles,
   HelpCircle,
   RotateCcw,
@@ -65,11 +66,13 @@ export function LiveChatWidget() {
   const [threadId, setThreadId] = useState<string | null>(null);
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [userPhone, setUserPhone] = useState('');
   const [thread, setThread] = useState<ChatThread | null>(null);
 
   // Form inputs
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
+  const [inputPhone, setInputPhone] = useState('');
   const [initialQuestion, setInitialQuestion] = useState('');
   const [isStarting, setIsStarting] = useState(false);
   const [startError, setStartError] = useState('');
@@ -92,6 +95,10 @@ export function LiveChatWidget() {
           setThreadId(parsed.threadId);
           setUserName(parsed.userName);
           setUserEmail(parsed.userEmail);
+          if (parsed.userPhone) {
+            setUserPhone(parsed.userPhone);
+            setInputPhone(parsed.userPhone);
+          }
           fetchThread(parsed.threadId, true);
         }
       }
@@ -174,6 +181,10 @@ export function LiveChatWidget() {
       setStartError('Please enter a valid email address.');
       return;
     }
+    if (!inputPhone.trim()) {
+      setStartError('Please enter your phone / WhatsApp number.');
+      return;
+    }
 
     setIsStarting(true);
     try {
@@ -184,6 +195,7 @@ export function LiveChatWidget() {
           action: 'start',
           userName: inputName.trim(),
           userEmail: inputEmail.trim(),
+          userPhone: inputPhone.trim(),
           initialMessage: initialQuestion.trim() || undefined,
         }),
       });
@@ -194,6 +206,7 @@ export function LiveChatWidget() {
         setThreadId(newThread.id);
         setUserName(newThread.userName);
         setUserEmail(newThread.userEmail);
+        setUserPhone(newThread.userPhone || inputPhone.trim());
         setThread(newThread);
         prevMessagesCountRef.current = newThread.messages.length;
 
@@ -203,6 +216,7 @@ export function LiveChatWidget() {
             threadId: newThread.id,
             userName: newThread.userName,
             userEmail: newThread.userEmail,
+            userPhone: newThread.userPhone || inputPhone.trim(),
           })
         );
       } else {
@@ -275,6 +289,7 @@ export function LiveChatWidget() {
       setThread(null);
       setInputName(userName || '');
       setInputEmail(userEmail || '');
+      setInputPhone(userPhone || '');
       setInitialQuestion('');
     }
   };
@@ -411,7 +426,7 @@ export function LiveChatWidget() {
                         value={inputName}
                         onChange={(e) => setInputName(e.target.value)}
                         placeholder="e.g. Sarah Khan"
-                        className="w-full pl-10 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
+                        className="w-full pl-10 pr-3 py-2.5 text-base sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
                       />
                     </div>
                   </div>
@@ -428,7 +443,24 @@ export function LiveChatWidget() {
                         value={inputEmail}
                         onChange={(e) => setInputEmail(e.target.value)}
                         placeholder="e.g. sarah@university.edu.pk"
-                        className="w-full pl-10 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
+                        className="w-full pl-10 pr-3 py-2.5 text-base sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
+                      Phone / WhatsApp Number <span className="text-brand-orange">*</span>
+                    </label>
+                    <div className="relative">
+                      <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+                      <input
+                        type="tel"
+                        required
+                        value={inputPhone}
+                        onChange={(e) => setInputPhone(e.target.value)}
+                        placeholder="e.g. 0300 1234567"
+                        className="w-full pl-10 pr-3 py-2.5 text-base sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
                       />
                     </div>
                   </div>
@@ -442,7 +474,7 @@ export function LiveChatWidget() {
                       value={initialQuestion}
                       onChange={(e) => setInitialQuestion(e.target.value)}
                       placeholder="e.g. How does virtual pitching work for outstation teams?"
-                      className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800 resize-none"
+                      className="w-full p-3 text-base sm:text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800 resize-none"
                     />
                   </div>
 
@@ -451,13 +483,13 @@ export function LiveChatWidget() {
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
                       Frequently Asked:
                     </span>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
                       {QUICK_QUESTIONS.map((q) => (
                         <button
                           key={q}
                           type="button"
                           onClick={() => handleQuickQuestionClick(q)}
-                          className="text-[11px] bg-white hover:bg-brand-orange/10 hover:border-brand-orange/40 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 transition text-left font-medium active:scale-95"
+                          className="whitespace-nowrap text-xs bg-white hover:bg-brand-orange/10 hover:border-brand-orange/40 text-slate-700 px-3 py-1.5 rounded-xl border border-slate-200 transition text-left font-medium active:scale-95 shrink-0"
                         >
                           {q}
                         </button>
@@ -557,7 +589,7 @@ export function LiveChatWidget() {
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
                   placeholder="Type your question..."
-                  className="flex-1 px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-full border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
+                  className="flex-1 px-4 py-2.5 sm:py-3 text-base sm:text-sm rounded-full border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange text-slate-800"
                 />
                 <button
                   type="submit"

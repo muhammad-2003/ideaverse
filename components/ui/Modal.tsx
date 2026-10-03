@@ -11,6 +11,7 @@ interface ModalProps {
   subtitle?: string;
   children: React.ReactNode;
   maxWidth?: 'md' | 'lg' | 'xl' | '2xl';
+  zIndex?: string;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -20,6 +21,7 @@ export const Modal: React.FC<ModalProps> = ({
   subtitle,
   children,
   maxWidth = 'xl',
+  zIndex = 'z-50',
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -42,7 +44,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 overflow-y-auto">
+        <div className={`fixed inset-0 ${zIndex} flex items-center justify-center p-2.5 sm:p-6 overflow-y-auto`}>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}

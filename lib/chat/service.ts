@@ -81,30 +81,35 @@ const INITIAL_SEEDED_THREADS: ChatThread[] = [
   },
 ];
 
+// In-memory cache fallback to ensure reliability in serverless / read-only filesystem environments
+let memoryThreads: ChatThread[] = JSON.parse(JSON.stringify(INITIAL_SEEDED_THREADS));
+
 export function readChatThreads(): ChatThread[] {
   try {
     if (fs.existsSync(DATA_FILE_PATH)) {
       const content = fs.readFileSync(DATA_FILE_PATH, 'utf-8');
       const parsed = JSON.parse(content);
       if (Array.isArray(parsed)) {
+        memoryThreads = parsed;
         return parsed;
       }
     } else {
-      // Initialize with seed data
+      // Initialize with seed data on first run
       writeChatThreads(INITIAL_SEEDED_THREADS);
       return INITIAL_SEEDED_THREADS;
     }
   } catch (err) {
-    console.error('Error reading chat threads file:', err);
+    console.warn('Filesystem read failed, using memory threads cache:', err);
   }
-  return [];
+  return memoryThreads;
 }
 
 export function writeChatThreads(threads: ChatThread[]): void {
+  memoryThreads = threads;
   try {
     fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(threads, null, 2), 'utf-8');
   } catch (err) {
-    console.error('Error writing chat threads file:', err);
+    console.warn('Filesystem write failed, retained in memory cache:', err);
   }
 }
 
@@ -124,6 +129,7 @@ export function createOrGetThread(input: StartChatInput): ChatThread {
   const threads = readChatThreads();
   const normalizedEmail = input.userEmail.trim().toLowerCase();
   const normalizedName = input.userName.trim();
+  const normalizedPhone = input.userPhone?.trim() || undefined;
 
   // Check if an existing open thread exists for this email
   let existing = threads.find(
@@ -133,6 +139,10 @@ export function createOrGetThread(input: StartChatInput): ChatThread {
   const now = new Date().toISOString();
 
   if (existing) {
+    if (normalizedPhone && !existing.userPhone) {
+      existing.userPhone = normalizedPhone;
+      writeChatThreads(threads);
+    }
     // If an initial message was supplied and not already duplicate
     if (input.initialMessage && input.initialMessage.trim()) {
       const newMsg: ChatMessage = {
@@ -181,6 +191,7 @@ export function createOrGetThread(input: StartChatInput): ChatThread {
     id: newThreadId,
     userName: normalizedName,
     userEmail: normalizedEmail,
+    userPhone: normalizedPhone,
     status: 'open',
     unreadAdminCount: input.initialMessage ? 1 : 0,
     unreadUserCount: 1, // Welcome message

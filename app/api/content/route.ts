@@ -4,15 +4,13 @@ import path from 'path';
 import { defaultSiteContent } from '@/lib/content/defaultContent';
 import { SiteContent } from '@/types/content';
 
+export const dynamic = 'force-dynamic';
+
 const CONTENT_FILE_PATH = path.join(process.cwd(), '.site_content.json');
 
 let memoryContent: SiteContent | null = null;
 
 function readSiteContent(): SiteContent {
-  if (memoryContent) {
-    return memoryContent;
-  }
-
   try {
     if (fs.existsSync(CONTENT_FILE_PATH)) {
       const data = fs.readFileSync(CONTENT_FILE_PATH, 'utf-8');
@@ -36,6 +34,10 @@ function readSiteContent(): SiteContent {
     }
   } catch (err) {
     console.error('Error reading site content file:', err);
+  }
+
+  if (memoryContent) {
+    return memoryContent;
   }
 
   // Initialize file if not found and writable

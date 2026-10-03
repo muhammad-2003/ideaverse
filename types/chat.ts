@@ -13,6 +13,7 @@ export interface ChatThread {
   id: string;
   userName: string;
   userEmail: string;
+  userPhone?: string;
   status: ChatStatus;
   unreadAdminCount: number;
   unreadUserCount: number;
@@ -25,6 +26,7 @@ export interface ChatThread {
 export interface StartChatInput {
   userName: string;
   userEmail: string;
+  userPhone?: string;
   initialMessage?: string;
 }
 

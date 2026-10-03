@@ -270,10 +270,21 @@ export default function AdminPage() {
   };
 
   const handleDelete = async (ref: string) => {
-    await deleteLead(ref);
+    // 1. Optimistic UI update
+    setLeads((prev) => prev.filter((l) => l.public_reference !== ref));
     setDeleteConfirmRef(null);
     if (selectedLead?.public_reference === ref) {
       setIsDetailOpen(false);
+      setSelectedLead(null);
+    }
+    setSaveSuccessMsg(`Application ${ref} deleted successfully.`);
+    setTimeout(() => setSaveSuccessMsg(null), 3500);
+
+    // 2. Perform backend delete
+    try {
+      await deleteLead(ref);
+    } catch (e) {
+      console.error('Delete lead error:', e);
     }
     fetchLeads();
   };
@@ -431,7 +442,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-24 text-left">
+    <div className={`min-h-screen bg-slate-50 text-left ${activeTab === 'chat' ? 'pb-2 sm:pb-24' : 'pb-24'}`}>
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-wrap items-center justify-between gap-2.5 sm:gap-4">
@@ -585,7 +596,7 @@ export default function AdminPage() {
       )}
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-8 space-y-6 sm:space-y-8">
+      <main className={`max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 ${activeTab === 'chat' ? 'pt-2 sm:pt-6 space-y-3 sm:space-y-6' : 'pt-4 sm:pt-8 space-y-6 sm:space-y-8'}`}>
         {/* ========================================================================= */}
         {/* TAB 1: APPLICATIONS & LEADS                                               */}
         {/* ========================================================================= */}
@@ -1904,15 +1915,25 @@ export default function AdminPage() {
               </div>
             </div>
 
-            <div className="pt-2 flex justify-between items-center">
+            <div className="pt-3 flex flex-wrap justify-between items-center gap-3 border-t border-slate-100">
               <Link
                 href={`/application/${selectedLead.public_reference}`}
                 target="_blank"
-                className="text-xs font-bold text-brand-blue hover:underline inline-flex items-center gap-1"
+                className="text-xs font-bold text-brand-blue hover:underline inline-flex items-center gap-1.5"
               >
                 <span>View Applicant Status & Poster Card</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
+
+              <button
+                type="button"
+                onClick={() => setDeleteConfirmRef(selectedLead.public_reference)}
+                className="px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200 transition-colors inline-flex items-center gap-1.5"
+                title="Delete this application"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Delete Application</span>
+              </button>
             </div>
           </div>
         </Modal>
@@ -1926,6 +1947,7 @@ export default function AdminPage() {
           title="Confirm Deletion"
           subtitle={`Are you sure you want to delete application ${deleteConfirmRef}?`}
           maxWidth="md"
+          zIndex="z-[100]"
         >
           <div className="space-y-4 text-left">
             <p className="text-xs text-slate-600">

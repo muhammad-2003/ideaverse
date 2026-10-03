@@ -25,7 +25,7 @@ export function useSiteContent() {
 
   const fetchContent = async () => {
     try {
-      const res = await fetch('/api/content');
+      const res = await fetch(`/api/content?t=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         if (data.content) {

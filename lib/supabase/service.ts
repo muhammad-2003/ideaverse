@@ -204,9 +204,9 @@ export async function updateOfficialFormStatus(
 export async function getAllLeads(): Promise<IdeaVerseLead[]> {
   let combinedLeads: IdeaVerseLead[] = [];
 
-  // 1. Fetch from Server API
+  // 1. Fetch from Server API with cache-busting
   try {
-    const res = await fetch('/api/leads');
+    const res = await fetch(`/api/leads?_t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const json = await res.json();
       if (Array.isArray(json.leads)) {
@@ -238,6 +238,17 @@ export async function getAllLeads(): Promise<IdeaVerseLead[]> {
     }
   });
 
+  // Filter out any explicitly deleted lead refs
+  try {
+    if (typeof window !== 'undefined') {
+      const rawDeleted = localStorage.getItem('ideaverse_deleted_lead_refs');
+      if (rawDeleted) {
+        const deletedArr: string[] = JSON.parse(rawDeleted);
+        deletedArr.forEach((r) => leadMap.delete(r));
+      }
+    }
+  } catch (e) {}
+
   const finalLeads = Array.from(leadMap.values());
   finalLeads.sort(
     (a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
@@ -250,6 +261,17 @@ export async function deleteLead(ref: string): Promise<boolean> {
   memoryLeads.delete(ref);
   const localLeads = getLocalLeads();
   saveLocalLeads(localLeads.filter((l) => l.public_reference !== ref));
+
+  try {
+    if (typeof window !== 'undefined') {
+      const rawDeleted = localStorage.getItem('ideaverse_deleted_lead_refs') || '[]';
+      const deletedArr: string[] = JSON.parse(rawDeleted);
+      if (!deletedArr.includes(ref)) {
+        deletedArr.push(ref);
+        localStorage.setItem('ideaverse_deleted_lead_refs', JSON.stringify(deletedArr));
+      }
+    }
+  } catch (e) {}
 
   try {
     const res = await fetch(`/api/leads?ref=${encodeURIComponent(ref)}`, {
