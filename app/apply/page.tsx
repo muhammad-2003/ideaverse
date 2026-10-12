@@ -227,8 +227,21 @@ export default function ApplyPage() {
           </h1>
 
           <p className="text-xs sm:text-base text-slate-600 font-medium max-w-xl mx-auto px-2">
-            Submit your startup profile to enter Sindh&apos;s premier pitching & showcase competition under Spectrum 2.0.
+            Taking the startup stage from Karachi to all of Sindh under Spectrum 2.0. Compete under one unified judging framework.
           </p>
+
+          {/* Quick Guidance Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-[11px] font-mono font-bold text-brand-navy">
+            <span className="px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
+              10, 11 &amp; 14 Nov 2026
+            </span>
+            <span className="px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
+              Max 4 Members / Team
+            </span>
+            <span className="px-3 py-1 rounded-full bg-orange-50 text-brand-orange border border-brand-orange/20 shadow-2xs">
+              Fee: PKR 1,000 (IU) • PKR 2,000 (External)
+            </span>
+          </div>
         </div>
 
         {/* Application Form Card */}

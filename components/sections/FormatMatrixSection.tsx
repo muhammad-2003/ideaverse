@@ -2,142 +2,188 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building, Laptop, Sparkles, MapPin, CheckCircle2 } from 'lucide-react';
+import { Building, Laptop, Sparkles, MapPin, CheckCircle2, ArrowRight, ShieldCheck, Store, Calendar } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
+import { eventConfig } from '@/config/event';
 
 export const FormatMatrixSection: React.FC = () => {
   return (
-    <section id="format" className="py-16 sm:py-24 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto space-y-10 sm:space-y-16">
+    <section id="structure" className="py-16 sm:py-24 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
           <Badge variant="blue" size="md">
-            Unified Competition Framework
+            Event Structure
           </Badge>
           <h2 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black font-display text-brand-darkText tracking-tight leading-tight px-2 break-words">
-            PARTICIPATION{' '}
+            THREE DAYS,{' '}
             <span className="bg-gradient-to-r from-brand-blue via-brand-purple to-brand-orange bg-clip-text text-transparent">
-              FORMATS.
+              ONE PATHWAY.
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-slate-600 px-2">
-            One single judging framework. Location determines your initial pitching medium.
+          <p className="text-sm sm:text-base md:text-lg text-slate-600 px-2 font-medium">
+            Location decides the pitching format only; every startup competes under one unified category.
           </p>
         </div>
 
-        {/* Dual Pitching Columns */}
-        {/* Dual Pitching Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
-          {/* Format 1: Karachi & IU */}
-          <Card className="p-4 xs:p-5 sm:p-8 space-y-4 sm:space-y-6 bg-white border-slate-200 shadow-xl border-t-4 border-t-brand-blue">
-            <div className="flex items-center justify-between">
-              <Badge variant="blue" size="sm">
-                In-Person Pitch
-              </Badge>
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-blue">
-                <Building className="w-4 h-4 sm:w-5 sm:h-5" />
+        {/* 3 Days Schedule Overview Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          {/* Day 1: 10 Nov */}
+          <Card className="p-6 sm:p-7 space-y-4 bg-white border-slate-200 shadow-lg border-t-4 border-t-brand-navy flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-black bg-brand-navy text-white">
+                  TUE 10 NOV
+                </span>
+                <Laptop className="w-5 h-5 text-brand-navy" />
               </div>
-            </div>
 
-            <div>
-              <h3 className="text-base xs:text-lg sm:text-2xl font-black font-display text-brand-darkText leading-snug">
-                Karachi &amp; Iqra University Startups
+              <h3 className="text-xl font-black font-display text-brand-navy">
+                Virtual Pitching
               </h3>
-              <p className="text-[10px] sm:text-xs text-brand-blue font-mono font-bold mt-1 uppercase">
-                PHYSICAL PITCHING ROUNDS
+
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                Startups from outside Karachi (within Sindh) pitch online on Zoom or a university-approved platform.
               </p>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Teams based in Karachi or representing Iqra University participate in live physical pitching sessions in front of the judging panel at Iqra University Main Campus.
-            </p>
-
-            <ul className="space-y-2 text-xs text-slate-700 font-medium">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue shrink-0" />
-                <span>Live presentation to on-site panel</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue shrink-0" />
-                <span>Direct networking with judges &amp; visitors</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-blue shrink-0" />
-                <span>Eligibility for physical showcase marquee</span>
-              </li>
-            </ul>
+            <div className="pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500 font-semibold">
+              Format: Live Online Screen Share &amp; Q&amp;A
+            </div>
           </Card>
 
-          {/* Format 2: Other Cities in Sindh */}
-          <Card className="p-4 xs:p-5 sm:p-8 space-y-4 sm:space-y-6 bg-white border-slate-200 shadow-xl border-t-4 border-t-brand-purple">
-            <div className="flex items-center justify-between">
-              <Badge variant="purple" size="sm">
-                Online Pitch
-              </Badge>
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-purple/10 border border-brand-purple/20 flex items-center justify-center text-brand-purple">
-                <Laptop className="w-4 h-4 sm:w-5 sm:h-5" />
+          {/* Day 2: 11 Nov */}
+          <Card className="p-6 sm:p-7 space-y-4 bg-white border-slate-200 shadow-lg border-t-4 border-t-brand-blue flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-black bg-brand-blue text-white">
+                  WED 11 NOV
+                </span>
+                <Building className="w-5 h-5 text-brand-blue" />
               </div>
-            </div>
 
-            <div>
-              <h3 className="text-base xs:text-lg sm:text-2xl font-black font-display text-brand-darkText leading-snug">
-                Other Cities Across Sindh
+              <h3 className="text-xl font-black font-display text-brand-navy">
+                Physical Pitching
               </h3>
-              <p className="text-[10px] sm:text-xs text-brand-purple font-mono font-bold mt-1 uppercase">
-                VIRTUAL PITCHING ROUNDS
+
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                Karachi-based and IU startups pitch in person at the IU Main Campus (CEIF Hall targeted, to be confirmed).
               </p>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Founders from Hyderabad, Sukkur, Larkana, and other cities across Sindh participate via live virtual presentation rooms with equal judging standards.
-            </p>
+            <div className="pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500 font-semibold">
+              Venue: IU Main Campus (CEIF Hall targeted)
+            </div>
+          </Card>
 
-            <ul className="space-y-2 text-xs text-slate-700 font-medium">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-purple shrink-0" />
-                <span>Seamless online screen &amp; pitch presentation</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-purple shrink-0" />
-                <span>Equal evaluation under central framework</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-purple shrink-0" />
-                <span>Selected finalists invited to physical marquee</span>
-              </li>
-            </ul>
+          {/* Day 3: 14 Nov */}
+          <Card className="p-6 sm:p-7 space-y-4 bg-white border-brand-orange/40 shadow-xl border-t-4 border-t-brand-orange flex flex-col justify-between ring-1 ring-brand-orange/20">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-black bg-brand-orange text-white">
+                  SAT 14 NOV
+                </span>
+                <Store className="w-5 h-5 text-brand-orange" />
+              </div>
+
+              <h3 className="text-xl font-black font-display text-brand-orange">
+                Startup Showcase
+              </h3>
+
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                Top 10–15 startups from both rounds exhibit in the IdeaVerse Marquee, IU Main Campus, Ground Floor.
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-slate-100 text-[11px] font-mono font-bold text-brand-orange">
+              Exhibition: Ground Floor Marquee Area
+            </div>
           </Card>
         </div>
 
-        {/* Dynamic Convergence Box */}
-        <div className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-brand-blue via-brand-purple to-brand-orange text-white text-center space-y-3 sm:space-y-5 shadow-2xl">
-          <Badge variant="slate" size="md" className="bg-white/20 text-white border-white/30">
-            The Shared Destination
-          </Badge>
-
-          <h3 className="text-lg xs:text-xl sm:text-3xl font-black font-display text-white tracking-tight uppercase leading-tight px-2">
-            One Unified Final Showcase
-          </h3>
-
-          {/* 3-Step Responsive Pathway */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 py-1">
-            <div className="px-3.5 py-2 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 text-xs sm:text-sm font-bold text-white uppercase tracking-wider w-full sm:w-auto text-center">
-              1. Pitch Evaluation
+        {/* HOW STARTUPS MOVE THROUGH THE EVENT (FLOWCHART SECTION) */}
+        <div className="p-6 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/90 space-y-8 shadow-inner">
+          <div className="text-center space-y-1">
+            <div className="text-xs font-mono font-bold text-brand-orange uppercase tracking-widest">
+              Event Pathway Architecture
             </div>
-            <span className="text-white/70 font-bold rotate-90 sm:rotate-0 text-xs sm:text-base">➔</span>
-            <div className="px-3.5 py-2 rounded-xl bg-white/25 backdrop-blur-sm border border-white/35 text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider w-full sm:w-auto text-center shadow-sm">
-              2. Marquee Showcase
+            <h3 className="text-xl sm:text-3xl font-black font-display text-brand-navy">
+              HOW STARTUPS MOVE THROUGH THE EVENT
+            </h3>
+          </div>
+
+          {/* Flowchart Diagram */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+            {/* Left: Two Entry Streams */}
+            <div className="lg:col-span-4 space-y-4">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm text-left space-y-1">
+                <div className="text-[11px] font-mono font-bold text-brand-blue uppercase">
+                  Startups Outside Karachi
+                </div>
+                <div className="text-sm font-bold text-slate-900">
+                  Other cities across Sindh
+                </div>
+                <div className="pt-2 flex items-center gap-2 text-xs font-medium text-slate-600">
+                  <Laptop className="w-3.5 h-3.5 text-brand-blue" />
+                  <span>Virtual Pitch • Tue 10 Nov (Zoom)</span>
+                </div>
+              </div>
+
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm text-left space-y-1">
+                <div className="text-[11px] font-mono font-bold text-brand-navy uppercase">
+                  Startups in Karachi + IU
+                </div>
+                <div className="text-sm font-bold text-slate-900">
+                  Karachi-based teams &amp; IU participants
+                </div>
+                <div className="pt-2 flex items-center gap-2 text-xs font-medium text-slate-600">
+                  <Building className="w-3.5 h-3.5 text-brand-navy" />
+                  <span>Physical Pitch • Wed 11 Nov (CEIF Hall)</span>
+                </div>
+              </div>
             </div>
-            <span className="text-white/70 font-bold rotate-90 sm:rotate-0 text-xs sm:text-base">➔</span>
-            <div className="px-3.5 py-2 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 text-xs sm:text-sm font-bold text-white uppercase tracking-wider w-full sm:w-auto text-center">
-              3. Spectrum 2.0 Finale
+
+            {/* Middle: Unified Judging Box */}
+            <div className="lg:col-span-4 text-center p-6 sm:p-7 rounded-2xl bg-white border-2 border-brand-blue/30 shadow-md space-y-3">
+              <Badge variant="blue" size="sm">
+                Central Scoring Engine
+              </Badge>
+              <h4 className="text-lg sm:text-xl font-black font-display text-brand-navy uppercase">
+                UNIFIED JUDGING
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                One scoring framework with 8 criteria for every startup.
+              </p>
+              <div className="pt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-blue/10 text-brand-blue text-xs font-mono font-bold">
+                <span>Top 10–15 Selected</span>
+              </div>
+            </div>
+
+            {/* Right: Startup Showcase */}
+            <div className="lg:col-span-4 p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-brand-orange to-amber-600 text-white shadow-xl text-left space-y-3">
+              <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-extrabold bg-white/20 text-white uppercase tracking-wider">
+                Culmination Stage
+              </span>
+              <h4 className="text-lg sm:text-xl font-black font-display text-white uppercase">
+                STARTUP SHOWCASE
+              </h4>
+              <div className="text-xs font-mono font-bold text-amber-100">
+                Sat 14 Nov • Ground Floor Marquee
+              </div>
+              <p className="text-xs text-amber-50 leading-relaxed font-medium">
+                Selected startups present products and services, meeting thousands of visitors, industry guests, and participants.
+              </p>
             </div>
           </div>
 
-          <p className="max-w-2xl mx-auto text-xs xs:text-sm text-slate-100 leading-relaxed font-medium px-2">
-            Regardless of whether your initial pitch was physical or virtual, top selected ventures advance to exhibit their product live in the flagship Spectrum 2.0 Marquee.
-          </p>
+          {/* Good To Know Callout from PDF */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200 text-left flex items-start gap-3">
+            <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+              <strong className="text-slate-900">Good to know:</strong> Location decides the pitching format only; every startup competes in one unified category. The days between 11 and 14 Nov are used to evaluate pitches and select the showcase startups.
+            </div>
+          </div>
         </div>
       </div>
     </section>

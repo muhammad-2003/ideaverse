@@ -17,18 +17,18 @@ export const Footer: React.FC = () => {
             <div className="max-w-[260px] sm:max-w-xs">
               <img
                 src="/images/ideaverse_20_logo.png"
-                alt="IdeaVerse 2.0 Header Banner"
+                alt="IdeaVerse 2.0 Startup Pitching & Showcase Competition"
                 className="w-full object-contain"
               />
             </div>
 
-            {/* SEAMLESS LOGOS SHOWCASE STRIP (No Clunky Boxes!) */}
+            {/* SEAMLESS LOGOS SHOWCASE STRIP */}
             <div className="p-3 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-wrap items-center gap-5 sm:gap-6">
-              {/* Iqra University Logo (Enlarged) */}
+              {/* Iqra University Logo */}
               <img
                 src="/images/iqra_university_logo.png"
                 alt="Iqra University"
-                className="h-7 sm:h-10 w-auto object-contain"
+                className="h-7 sm:h-9 w-auto object-contain"
               />
 
               <span className="h-6 w-px bg-slate-200" />
@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
               <img
                 src="/images/spectrum_20_logo.jpg"
                 alt="IU Spectrum 2.0 Logo"
-                className="h-8 sm:h-10 w-auto object-contain rounded-lg shadow-sm"
+                className="h-8 sm:h-9 w-auto object-contain rounded-lg shadow-sm"
               />
 
               <span className="h-6 w-px bg-slate-200" />
@@ -51,8 +51,12 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-xs text-slate-600 max-w-md leading-relaxed font-medium">
-              Sindh&apos;s premier startup pitching & showcase competition under Spectrum 2.0 (*Where Talent Meets the Nation*). Organized by the IU Entrepreneurship Society (*Innovate | Initiate | Impact*) at Iqra University.
+              Startup Pitching &amp; Showcase Competition taking the startup stage from Karachi to all of Sindh. Organized by the <strong>IU Entrepreneurship Society &amp; IU Core</strong> under <strong>Spectrum 2.0</strong> at Iqra University, Karachi.
             </p>
+
+            <div className="text-[11px] font-mono text-slate-500">
+              President: <strong>{eventConfig.leadership.president}</strong> | Patron: <strong>{eventConfig.leadership.patron}</strong>
+            </div>
 
             <div className="flex items-center gap-3 pt-1">
               <a
@@ -74,9 +78,11 @@ export const Footer: React.FC = () => {
               Navigation
             </h4>
             <ul className="space-y-2 text-xs text-slate-600 font-medium">
-              <li><a href="#experience" className="hover:text-brand-orange transition-colors py-1 inline-block">Experience</a></li>
-              <li><a href="#how-it-works" className="hover:text-brand-orange transition-colors py-1 inline-block">How It Works</a></li>
-              <li><a href="#format" className="hover:text-brand-orange transition-colors py-1 inline-block">Participation Formats</a></li>
+              <li><a href="#experience" className="hover:text-brand-orange transition-colors py-1 inline-block">The Big Picture</a></li>
+              <li><a href="#previous-edition" className="hover:text-brand-orange transition-colors py-1 inline-block">IdeaVerse 1.0 vs 2.0</a></li>
+              <li><a href="#structure" className="hover:text-brand-orange transition-colors py-1 inline-block">Three Days Pathway</a></li>
+              <li><a href="#how-it-works" className="hover:text-brand-orange transition-colors py-1 inline-block">Participation &amp; Fees</a></li>
+              <li><a href="#prizes" className="hover:text-brand-orange transition-colors py-1 inline-block">Scoring &amp; Marquee</a></li>
               <li><a href="#eligibility" className="hover:text-brand-orange transition-colors py-1 inline-block">Eligibility</a></li>
               <li><a href="#faq" className="hover:text-brand-orange transition-colors py-1 inline-block">FAQ</a></li>
             </ul>
@@ -85,7 +91,7 @@ export const Footer: React.FC = () => {
           {/* Ecosystem Links */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-brand-navy">
-              Ecosystem & Contact
+              Ecosystem &amp; Contact
             </h4>
             <ul className="space-y-2 text-xs text-slate-600 font-medium">
               <li><span className="text-brand-navy font-bold">{eventConfig.university}</span></li>
@@ -107,8 +113,8 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Slanted Tagline Banner */}
-        <div className="py-6 sm:py-8 border-y border-slate-200 text-center font-display font-black text-xl sm:text-3xl md:text-4xl tracking-widest text-brand-navy uppercase">
-          BUILD • PITCH • CONNECT • SHOWCASE
+        <div className="py-6 sm:py-8 border-y border-slate-200 text-center font-display font-black text-lg sm:text-2xl md:text-3xl tracking-widest text-brand-navy uppercase">
+          10 NOV VIRTUAL • 11 NOV PHYSICAL • 14 NOV SHOWCASE MARQUEE
         </div>
 
         {/* Bottom Bar */}
@@ -118,7 +124,7 @@ export const Footer: React.FC = () => {
             <span>Parent Event:</span>
             <strong className="text-brand-navy font-bold">IU Spectrum 2.0</strong>
             <span>| Host:</span>
-            <strong className="text-brand-orange font-bold">IU Entrepreneurship Society</strong>
+            <strong className="text-brand-orange font-bold">IU Entrepreneurship Society &amp; IU Core</strong>
           </p>
         </div>
       </div>

@@ -11,31 +11,31 @@ export const WhyIdeaVerseSection: React.FC = () => {
   const pillars = [
     {
       title: 'PITCH',
-      description: 'Present your technology, business model, and vision directly to experienced founders and judges.',
+      description: 'Present your technology, business model, and vision directly to seasoned industry judges and ecosystem leaders.',
       icon: Presentation,
       color: 'text-brand-blue',
     },
     {
       title: 'CONNECT',
-      description: 'Engage with fellow founders, mentors, investors, and entrepreneurial ecosystem leaders.',
+      description: 'Engage with fellow student founders, mentors, investors, and entrepreneurial ecosystems across all of Sindh.',
       icon: Network,
       color: 'text-brand-purple',
     },
     {
       title: 'SHOWCASE',
-      description: 'Selected ventures win dedicated exhibition space in the high-footfall Spectrum 2.0 Marquee.',
+      description: 'Top 10–15 startups win dedicated exhibition space in the ground-floor Spectrum 2.0 IdeaVerse Marquee.',
       icon: LayoutGrid,
       color: 'text-cyan-600',
     },
     {
       title: 'VISIBILITY',
-      description: 'Build brand awareness for your startup across social channels, university media, and tech networks.',
+      description: 'Build brand awareness for your startup across social channels, university media, and tech networks throughout Sindh.',
       icon: Eye,
       color: 'text-amber-600',
     },
     {
       title: 'RECOGNITION',
-      description: 'Top winning teams earn official trophies, university certificates, and ecosystem endorsement.',
+      description: 'Finalists receive official trophies, shields, university certificates, and main stage recognition.',
       icon: Trophy,
       color: 'text-emerald-600',
     },
@@ -56,11 +56,11 @@ export const WhyIdeaVerseSection: React.FC = () => {
             </span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-slate-600 font-medium">
-            More than a contest — an immersive springboard for ambitious technology founders.
+            Taking the startup stage from Karachi to all of Sindh — an immersive springboard for ambitious technology founders.
           </p>
         </div>
 
-        {/* Pillars Flex Container (Flawless Wrap across all Screen Widths) */}
+        {/* Pillars Flex Container */}
         <div className="flex flex-wrap items-stretch justify-center gap-5 sm:gap-6 w-full">
           {pillars.map((item, idx) => (
             <motion.div
@@ -72,7 +72,7 @@ export const WhyIdeaVerseSection: React.FC = () => {
               className="flex-1 min-w-[220px] sm:min-w-[240px] max-w-[320px] w-full"
             >
               <Card className="p-5 sm:p-6 h-full flex flex-col justify-between bg-white border-slate-200 shadow-lg hover:border-brand-blue">
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-3 sm:space-y-4 text-left">
                   <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-slate-100 flex items-center justify-center ${item.color}`}>
                     <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
@@ -93,11 +93,11 @@ export const WhyIdeaVerseSection: React.FC = () => {
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" />
             <span>
-              <strong>Prize Pool Note:</strong> Prize money details are planned and subject to final sponsorship confirmation.
+              <strong>Sponsorship Note:</strong> Prize money for top finalists is planned and subject to sponsorship and final budget. No prize amount is publicly committed until confirmed.
             </span>
           </div>
           <Badge variant="amber" size="sm">
-            {eventConfig.prizeMoneyConfirmed ? 'Confirmed' : 'Announcement Pending'}
+            Subject to Sponsorship
           </Badge>
         </div>
       </div>

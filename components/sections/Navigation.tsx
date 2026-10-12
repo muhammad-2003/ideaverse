@@ -24,11 +24,12 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenApply }) => {
   }, []);
 
   const navLinks = [
-    { label: 'Experience', href: '#experience' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Format', href: '#format' },
+    { label: 'Big Picture', href: '#experience' },
+    { label: '1.0 vs 2.0', href: '#previous-edition' },
+    { label: '3-Day Pathway', href: '#structure' },
+    { label: 'Participation', href: '#how-it-works' },
+    { label: 'Criteria & Marquee', href: '#prizes' },
     { label: 'Eligibility', href: '#eligibility' },
-    { label: 'Previous Edition', href: '#previous-edition' },
     { label: 'FAQ', href: '#faq' },
   ];
 
@@ -54,7 +55,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenApply }) => {
           </Link>
 
           {/* Desktop Nav Links (1024px+) */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.label}
